@@ -6,29 +6,17 @@ export interface Project {
   uniqueName: string;
   date: string;
   resumen: string;
-  linkImg: string[];
-  MainCharacteristics: string[];
-  TechnologiesUsed: TechnologiesUsed;
-  links: Links;
-}
-interface Links {
-  frontend: string;
-  Backend: string;
-  Demo: string;
-}
-interface TechnologiesUsed {
-  frontend: string[];
-  backend: string[];
+  coverImage: string;
 }
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="flex flex-col sm:flex-row py-2 rounded-md hover:cursor-pointer">
+    <div className="flex flex-col sm:flex-row rounded-md hover:cursor-pointer">
       <div className="w-full sm:w-1/3">
         <Image
-          src={project.linkImg[0]}
+          src={project.coverImage}
           alt={project.name}
-          className="rounded-lg aspect-[640/480] object-cover"
+          className="rounded-lg aspect-[640/480] object-cover h-full w-full"
           width={300}
           height={200}
         />
