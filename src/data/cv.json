@@ -1,0 +1,228 @@
+{
+  "profile": {
+    "name": "Juan Diaz Guerrero",
+    "description": "Ingeniero de sistemas | Frontend developer | ReactJS",
+    "location": "Santa Marta, Magdalena, Colombia",
+    "bannerLink": "/img/banner.gif",
+    "avatarLink": "/img/profile5.jpeg",
+    "openToWork": true
+  },
+  "education": [
+    {
+      "degree": "Ingeniero de Sistemas",
+      "instituteName": "Universidad del Magdalena",
+      "linkImg": "/img/unimag.png",
+      "startDate": "2020",
+      "endDate": "2024"
+    }
+  ],
+  "contact": {
+    "email": {
+      "label": "Email",
+      "value": "juanluisdiazguerrer@gmail.com"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "value": "https://www.linkedin.com/in/juan7diaz/"
+    },
+    "github": {
+      "label": "GitHub",
+      "value": "https://www.github.com/juan7diaz"
+    },
+    "cv": {
+      "label": "Currículum",
+      "value": "/pdf/CV-JuanDiaz.pdf"
+    }
+  },
+  "about": {
+    "summary": "Soy estudiante de último semestre de ingeniería de sistemas, con una sólida formación académica y experiencia práctica en diversos proyectos. Mi enfoque se ha centrado en la resolución creativa de problemas y la aplicación práctica de soluciones tecnológicas innovadoras. He participado activamente en proyectos que abarcan desde el diseño de software hasta la gestión de bases de datos, lo que me ha permitido desarrollar habilidades técnicas y de trabajo en equipo.\n Actualmente profundizando conocimientos en React Native y Spring Boot para mantenerme a la vanguardia."
+  },
+  "certification": [
+    {
+      "logoSrc": "/img/udemy.jpeg",
+      "title": "React: De cero a experto ( Hooks y MERN )",
+      "issuer": "Udemy",
+      "issueDate": "Jun. 2024",
+      "credentialId": "UC-#3554bf-6180-4cle-bc12-1f48b8d3249a",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-ff3554bf-6180-4c1e-bc12-1f48b8d3249a/"
+    },
+    {
+      "logoSrc": "/img/devtalles.jpeg",
+      "title": "Principios SOLID y Clean Code",
+      "issuer": "Devtalles",
+      "issueDate": "Dic. 2023",
+      "credentialId": "0euh1vslfi",
+      "credentialUrl": "https://cursos.devtalles.com/certificates/0euh1vslfi"
+    },
+    {
+      "logoSrc": "/img/devtalles.jpeg",
+      "title": "Node - Autenticación Rest con Clean Architecture",
+      "issuer": "Devtalles",
+      "issueDate": "Dic. 2023",
+      "credentialId": "vmbqrfu62d",
+      "credentialUrl": "https://cursos.devtalles.com/certificates/vmbqrfu62d"
+    },
+    {
+      "logoSrc": "/img/devtalles.jpeg",
+      "title": "TypeScript: Tu completa guía y manual de mano.",
+      "issuer": "Devtalles",
+      "issueDate": "Dic. 2023",
+      "credentialId": "isqskd8bt3",
+      "credentialUrl": "https://cursos.devtalles.com/certificates/isqskd8bt3"
+    },
+    {
+      "logoSrc": "/img/devtalles.jpeg",
+      "title": "GIT + GitHub: Todo un sistema de control de versiones de cero",
+      "issuer": "Devtalles",
+      "issueDate": "Dic. 2023",
+      "credentialId": "4jnczyzdjz",
+      "credentialUrl": "https://cursos.devtalles.com/certificates/4jnczyzdjz"
+    }
+  ],
+  "skill": [
+    {
+      "name": "html",
+      "label": "HTML"
+    },
+    {
+      "name": "css",
+      "label": "CSS"
+    },
+    {
+      "name": "javascript",
+      "label": "JavaScript"
+    },
+    {
+      "name": "typescript",
+      "label": "TypeScript"
+    },
+    {
+      "name": "react",
+      "label": "React"
+    },
+    {
+      "name": "nodejs",
+      "label": "Node"
+    },
+    {
+      "name": "git",
+      "label": "Git"
+    },
+    {
+      "name": "github",
+      "label": "GitHub"
+    },
+    {
+      "name": "postgresql",
+      "label": "PostgreSQL"
+    },
+    {
+      "name": "chakraui",
+      "label": "Chakra-UI"
+    },
+    {
+      "name": "mui",
+      "label": "MUI"
+    },
+    {
+      "name": "reactquery",
+      "label": "React Query"
+    },
+    {
+      "name": "express",
+      "label": "Express"
+    },
+    {
+      "name": "azuredevops",
+      "label": "Azure Devops"
+    },
+    {
+      "name": "bash",
+      "label": "Bash"
+    },
+    {
+      "name": "nextjs",
+      "label": "Next Js"
+    }
+  ],
+  "project": [
+    {
+      "name": "RutaGo - App web de rutas de Autobuses",
+      "uniqueName": "rutago",
+      "date": "feb. 2023 - jun. 2023",
+      "resumen": "¿Estás cansado de perderte en la ciudad? 🤔 RutaGo es la aplicación web funcional que estabas esperando. RutaGo te brinda una solución innovadora para descubrir las rutas de autobuses en Santa Marta. 🌴 ",
+      "linkImg": ["/img/rutago1.png", "/img/rutago2.png"],
+      "MainCharacteristics": [
+        "🌐 Frontend moderno con React y Chakra UI para una experiencia de usuario excepcional",
+        "🔒 Autenticación segura con bcryptjs, jsonwebtoken y recuperación de contraseña vía correo electrónico",
+        "🗺️ Visualización interactiva de rutas de autobús con Leaflet",
+        "🔐 Rutas públicas y privadas para usuarios autenticados",
+        "📡 Backend robusto con Node, Express, TypeORM y PostgreSQL",
+        "👤 Vistas personalizadas para usuarios y administradores"
+      ],
+      "TechnologiesUsed": {
+        "frontend": [
+          "React",
+          "Chakra UI",
+          "Leaflet"
+        ],
+        "backend": [
+          "Node",
+          "bcryptjs",
+          "cors",
+          "dotenv",
+          "express",
+          "express-validator",
+          "jsonwebtoken",
+          "typeorm",
+          "postgresql",
+          "nodemailer"
+        ]
+      },
+      "links": {
+        "frontend": "https://github.com/Juan7diaz/RutaGo-Frontend",
+        "Backend": "https://github.com/Juan7diaz/RutaGo-Backend",
+        "Demo": "https://rutago.netlify.app"
+      }
+    },
+    {
+      "name": "RutaGo - App web de rutas de Autobuses2",
+      "uniqueName": "rutago2",
+      "date": "feb. 2023 - jun. 2023",
+      "resumen": "¿Estás cansado de perderte en la ciudad? 🤔 RutaGo es la aplicación web funcional que estabas esperando. RutaGo te brinda una solución innovadora para descubrir las rutas de autobuses en Santa Marta. 🌴 ",
+      "linkImg": ["/img/rutago2.png", "/img/rutago2.png"],
+      "MainCharacteristics": [
+        "🌐 Frontend moderno con React y Chakra UI para una experiencia de usuario excepcional",
+        "🔒 Autenticación segura con bcryptjs, jsonwebtoken y recuperación de contraseña vía correo electrónico",
+        "🗺️ Visualización interactiva de rutas de autobús con Leaflet",
+        "🔐 Rutas públicas y privadas para usuarios autenticados",
+        "📡 Backend robusto con Node, Express, TypeORM y PostgreSQL",
+        "👤 Vistas personalizadas para usuarios y administradores"
+      ],
+      "TechnologiesUsed": {
+        "frontend": [
+          "React",
+          "Chakra UI",
+          "Leaflet"
+        ],
+        "backend": [
+          "Node",
+          "bcryptjs",
+          "cors",
+          "dotenv",
+          "express",
+          "express-validator",
+          "jsonwebtoken",
+          "typeorm",
+          "postgresql",
+          "nodemailer"
+        ]
+      },
+      "links": {
+        "frontend": "https://github.com/Juan7diaz/RutaGo-Frontend",
+        "Backend": "https://github.com/Juan7diaz/RutaGo-Backend",
+        "Demo": "https://rutago.netlify.app"
+      }
+    }
+  ]
+}

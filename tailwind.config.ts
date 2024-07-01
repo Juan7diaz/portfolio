@@ -8,13 +8,31 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        background: "#15191d",
+        primary: {
+          base: "#FFD700",
+          hover: "#caaa00",
+          transparent: "#ffd60259",
+        },
+        text: {
+          primary: "#FFFFFFE6",
+          secondary: "#FFFFFFBF",
+          tertiary: "#AAAAAA",
+        }
       },
+      keyframes: {
+        shine: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
+      animation: {
+        shine: 'shine 2s linear infinite'
+      }
     },
   },
   plugins: [],
 };
+
 export default config;
