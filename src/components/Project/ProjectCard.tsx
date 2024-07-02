@@ -21,7 +21,10 @@ function ProjectCard({ project }: { project: ProjectFrontmatter }) {
         <h2 className="text-xl font-bold text-text-secondary">
           {project.name}
         </h2>
-        <p className="my-1 text-sm text-text-tertiary">{project.date}</p>
+        <div className='flex flex-row space-x-4'>
+          <p className="my-1 text-sm text-text-tertiary">{project.role}</p>
+          <p className="my-1 text-sm text-text-tertiary">{project.date}</p>
+        </div>
         <p className="text-text-secondary">{project.resumen}</p>
         <CustomLink
           text="Ver más"
