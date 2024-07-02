@@ -19,6 +19,8 @@ const config: Config = {
           primary: "#FFFFFFE6",
           secondary: "#FFFFFFBF",
           tertiary: "#AAAAAA",
+          codeInLine: "#FFD700",
+          code: "#AAAAAA",
         }
       },
       keyframes: {
@@ -36,3 +38,6 @@ const config: Config = {
 };
 
 export default config;
+
+// 282c34
+// 15191d

@@ -20,7 +20,7 @@ function TextWithLineBreaks({
     <>
       {textArray.map((line, index) => (
         <p
-          className={`${index + 1 !== textArray.length && 'mb-5'} leading-8 text-text-secondary ${className}`}
+          className={`${index + 1 !== textArray.length && 'mb-5'} leading-6 text-text-secondary md:leading-8 ${className}`}
           key={generateKey(line, index)}
         >
           {line}

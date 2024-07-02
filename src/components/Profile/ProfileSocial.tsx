@@ -6,7 +6,7 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { MdEmail, MdFileDownload } from 'react-icons/md';
 import cv from '@/data/cv.json';
 
-function ProfileSocial() {
+function ProfileSocial({ showCv }: { showCv?: boolean }) {
   const handleEmailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     window.location.href = `mailto:${cv.contact.email.value}`;
@@ -47,18 +47,28 @@ function ProfileSocial() {
       >
         <MdEmail size={20} aria-hidden="true" className={iconClasses} />
       </button>
-      <Link
-        href={cv.contact.cv.value}
-        download
-        target="_self"
-        className={`${commonClasses} flex flex-row items-center space-x-1`}
-        aria-label={`Enviar un correo a ${cv.contact.email.value}`}
-      >
-        <MdFileDownload size={20} aria-hidden="true" className={iconClasses} />
-        <p className={textClasses}>Descargar CV</p>
-      </Link>
+      {showCv && (
+        <Link
+          href={cv.contact.cv.value}
+          download
+          target="_self"
+          className={`${commonClasses} flex flex-row items-center space-x-1`}
+          aria-label={`Enviar un correo a ${cv.contact.email.value}`}
+        >
+          <MdFileDownload
+            size={20}
+            aria-hidden="true"
+            className={iconClasses}
+          />
+          <p className={textClasses}>Descargar CV</p>
+        </Link>
+      )}
     </div>
   );
 }
+
+ProfileSocial.defaultProps = {
+  showCv: true,
+};
 
 export default ProfileSocial;

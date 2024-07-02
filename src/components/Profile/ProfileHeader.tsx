@@ -9,6 +9,7 @@ function ProfileHeader({ img }: { img: string }) {
         className="h-full w-full object-cover"
         width={700}
         height={200}
+        unoptimized
       />
     </div>
   );

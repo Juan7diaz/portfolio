@@ -1,0 +1,47 @@
+---
+name: Enrutamiento Dinamico
+date: jul. 2023 - Nov. 2023
+resumen: aca vas a aprender como enrutar dinamicamente en una red de computadoras con cisico packet tracer
+coverImage: https://ccnadesdecero.es/wp-content/uploads/2017/12/Situaci%C3%B3n-de-Routing-Din%C3%A1mico.png
+level: 100
+fileName: enrutamientodinamico
+type: Publicación
+---
+
+En el enrutamiento dinámico, los enrutadores crean y actualizan las tablas de enrutamiento en tiempo de ejecución según las condiciones reales de la red. Intentan encontrar la ruta más rápida desde el origen hasta el destino mediante un protocolo de enrutamiento dinámico, que es un conjunto de reglas que crean, mantienen y actualizan la tabla de enrutamiento dinámico.
+
+![imagen de una red interconectada](https://ccnadesdecero.es/wp-content/uploads/2017/12/Situaci%C3%B3n-de-Routing-Din%C3%A1mico.png)
+
+En los pc de santa marta Asignar la dirección ip, la mascara y el gateway en el pc de santa marta cuando vamos a _Desktop > ip configuration_ nos va a quedar algo tal que asi:
+
+![Diagrama de como quedará la red](https://community.cisco.com/t5/image/serverpage/image-id/176793iB9991DDEB6CF25FC/image-size/large?v=v2&px=999)
+
+**En el Router de santa marta** hay que agregarle las conexiones salientes del **router** de santa martac
+
+```bash filename="app.js"
+# para la salida de router0 al switch0
+Router>enable
+Router#configure terminal
+Router(config)#interface fastEthernet0/0
+Router(config-if)#no shutdown
+Router(config-if)#ip add 10.0.0.1 255.0.0.0
+
+# para la salida del router0 al router1
+Router>enable
+Router#configure terminal
+Router(config)#interface serial0/1/0
+Router(config-if)#no shutdown
+Router(config-if)#ip add 200.0.0.5 255.255.255.0
+```
+
+hay que configurar el enrutamiento dinamico para eso hay que agregar todas las redes generales a la que esta conectada el router con el comando `network <ip>` (pero las redes bases o sea las `0`)
+
+```bash filename="prubea.js"
+Router>enable
+Router#configure terminal
+Router(config)#route rip
+Router(config-router)#network 10.0.0.0
+Router(config-router)#network 200.0.0.0
+```
+
+> ⚠️ Esos mismo pasos se van a seguir para los pc, swiches y router de las ciudades de Barranquilla y Cartagena, únicamente cambiando las direcciones ip

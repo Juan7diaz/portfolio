@@ -6,7 +6,7 @@ import matter from 'gray-matter'
 
 // obtiene el frontmatter de un archivo .mdx en la carpeta src/data/projects o src/data/blogs
 // slug: nombre del archivo .mdx
-const getFrontmatter = (slug: string, type: 'projects' | "blogs") => {
+const getFrontmatter = <T>(slug: string, type: 'projects' | "blogs"): { data: T, content: string } => {
 
   if (type !== "projects" && type !== "blogs") throw new Error("Type must be 'projects' or 'blogs'")
 
@@ -15,9 +15,9 @@ const getFrontmatter = (slug: string, type: 'projects' | "blogs") => {
   const realSlug = slug.replace(/\.mdx$/, '')
   const filePath = path.join(root, `${realSlug}.mdx`)
   const fileContent = fs.readFileSync(filePath, 'utf8')
-  const { data } = matter(fileContent)
+  const { data, content } = matter(fileContent) as unknown as { data: T, content: string }
 
-  return data
+  return { data, content }
 }
 
 export default getFrontmatter
