@@ -16,7 +16,6 @@ function ProfileHeader({ img }: { img: string }) {
         onLoad={() => setIsLoading(false)}
         width={700}
         height={200}
-        unoptimized
       />
     </div>
   );

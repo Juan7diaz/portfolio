@@ -5,4 +5,5 @@ export interface ProjectFrontmatter extends Project {
   fileName: string
   type: string
   role: string
+  carouselImages: string[]
 }
