@@ -6,7 +6,7 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { MdEmail, MdFileDownload } from 'react-icons/md';
 import cv from '@/data/cv.json';
 
-function ProfileSocial({ showCv }: { showCv?: boolean }) {
+function ProfileSocial({ showCv = true }: { showCv?: boolean }) {
   const handleEmailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     window.location.href = `mailto:${cv.contact.email.value}`;
@@ -66,9 +66,5 @@ function ProfileSocial({ showCv }: { showCv?: boolean }) {
     </div>
   );
 }
-
-ProfileSocial.defaultProps = {
-  showCv: true,
-};
 
 export default ProfileSocial;
