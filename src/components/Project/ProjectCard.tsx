@@ -5,7 +5,7 @@ import CustomLink from '../common/CustomLink';
 
 function ProjectCard({ project }: { project: ProjectFrontmatter }) {
   return (
-    <div className="flex flex-col rounded-md hover:cursor-pointer sm:flex-row">
+    <div className="flex flex-col rounded-md sm:flex-row">
       <div className="w-full sm:w-1/3">
         <Image
           src={project.coverImage}
