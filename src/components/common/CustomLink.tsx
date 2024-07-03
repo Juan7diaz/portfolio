@@ -8,9 +8,10 @@ interface CustomLinkProps {
   text: string;
   IconComponent?: IconType;
   OpenAnotherTab?: boolean;
+  positionIcon?: 'left' | 'right';
 }
 
-function CustomLink({ url, text, IconComponent, OpenAnotherTab }: CustomLinkProps) {
+function CustomLink({ url, text, IconComponent, OpenAnotherTab, positionIcon = "right" }: CustomLinkProps) {
 
   return (
     <Link
@@ -19,8 +20,9 @@ function CustomLink({ url, text, IconComponent, OpenAnotherTab }: CustomLinkProp
       className="mt-2 flex items-center space-x-5 text-sm font-semibold text-primary-base hover:underline"
     >
       <span className="inline-flex items-center space-x-2 rounded-md px-2 py-1 hover:bg-primary-transparent">
+        {IconComponent && positionIcon === "left" && <IconComponent className="mr-2" />}
         {text}
-        {IconComponent && <IconComponent className="ml-2" />}
+        {IconComponent && positionIcon === "right" && <IconComponent className="ml-2" />}
       </span>
     </Link>
   );

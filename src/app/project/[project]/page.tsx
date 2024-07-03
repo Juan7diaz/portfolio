@@ -14,7 +14,7 @@ function ProjectPage({ params }: { params: { project: string } }) {
 
   return (
     <div className="m-5 md:m-0">
-      <ProjectHeader date={data.date} title={data.name} type={data.type} />
+      <ProjectHeader data={data}/>
       <Carousel imgs={data.carouselImages} />
       <ReactMarkdown components={MarkdownComponents as any}>
         {content}

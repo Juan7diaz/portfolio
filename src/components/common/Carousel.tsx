@@ -1,10 +1,20 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function Carousel({ imgs = [] }: { imgs: string[] }) {
+
+
+  useEffect(() => {
+    imgs.forEach((img) => {
+      const image = new window.Image();
+      image.src = img;
+    });
+  }, [imgs]);
+
+
   const [currentImg, setCurrentImg] = useState(
     imgs.length > 0 ? imgs[0] : 'no image',
   );

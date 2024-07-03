@@ -6,4 +6,6 @@ export interface ProjectFrontmatter extends Project {
   type: string
   role: string
   carouselImages: string[]
+  technologies: string[]
+  github: string
 }
