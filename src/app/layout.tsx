@@ -21,7 +21,7 @@ export default function AppLayout({
       <body
         className={`${inter.className} flex flex-col items-center bg-background sm:mt-5`}
       >
-        <main className="w-full max-w-[780px] space-y-10">{children}</main>
+        <main className="w-full max-w-[800px] space-y-10">{children}</main>
         <Footer />
         <SpeedInsights />
       </body>

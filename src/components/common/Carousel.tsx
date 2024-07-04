@@ -1,24 +1,20 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function Carousel({ imgs = [] }: { imgs: string[] }) {
-  useEffect(() => {
-    imgs.forEach((img) => {
-      const image = new window.Image();
-      image.src = img;
-    });
-  }, [imgs]);
-
   const [currentImg, setCurrentImg] = useState(
     imgs.length > 0 ? imgs[0] : 'no image',
   );
 
   if (imgs.length === 0) return <div />;
 
+
+
   const nextImg = () => {
+
     const currentIndex = imgs.indexOf(currentImg);
 
     const newIndex = currentIndex + 1 === imgs.length ? 0 : currentIndex + 1;
@@ -41,14 +37,12 @@ function Carousel({ imgs = [] }: { imgs: string[] }) {
         <button
           type="button"
           className="text-2xl text-text-primary hover:bg-slate-50/15"
-          onClick={nextImg}
+          onClick={prevImg}
           aria-label="botón para mostrar la siguiente imagen"
         >
           <IoIosArrowBack className="h-10 w-10 text-primary-base" />
         </button>
 
-        {/* Esto hace que cuando se cambie de imagen no haga una petición para traer de nuevo imagen */}
-        {/* Desventajas es que va a traer todas las imagenes del proyecto de golpe */}
         {imgs.map((img) => (
           <Image
             key={img}
@@ -65,27 +59,26 @@ function Carousel({ imgs = [] }: { imgs: string[] }) {
         <button
           type="button"
           className="text-2xl text-text-primary hover:bg-slate-50/15"
-          onClick={prevImg}
+          onClick={nextImg}
           aria-label="botón para mostrar la siguiente imagen"
         >
           <IoIosArrowForward className="h-10 w-10 text-primary-base" />
         </button>
       </div>
-      {imgs.length > 1 && (
-        <div className="flex flex-row items-center justify-center">
-          {imgs.map((img, index) => (
-            <button
-              key={img}
-              type="button"
-              className={`mx-2 h-2 w-2 rounded-full ${
-                img === currentImg ? 'bg-primary-base' : 'bg-text-tertiary'
-              }`}
-              onClick={() => setCurrentImg(img)}
-              aria-label={`botón para mostrar la imagen ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+
+      <div className="flex flex-row items-center justify-center">
+        {imgs.map((img, index) => (
+          <button
+            key={img}
+            type="button"
+            className={`mx-2 h-2 w-2 rounded-full ${
+              img === currentImg ? 'bg-primary-base' : 'bg-text-tertiary'
+            }`}
+            onClick={() => setCurrentImg(img)}
+            aria-label={`botón para mostrar la imagen ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
