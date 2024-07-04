@@ -15,7 +15,7 @@ function ProjectHeader({ data }: { data: ProjectFrontmatter }) {
         Regresar
       </Link>
       <div className="relative after:absolute after:bottom-2 after:left-0 after:h-[3px] after:w-24 after:bg-primary-base" />
-      <h1 className="mb-6 text-5xl font-bold text-text-primary">{data.name}</h1>
+      <h1 className="mb-6 sm:text-5xl text-4xl font-bold text-text-primary">{data.name}</h1>
       <div className="mb-8 flex items-center">
         <Image
           src={cv.profile.avatarLink}

@@ -143,6 +143,10 @@
     {
       "name": "nextjs",
       "label": "Next Js"
+    },
+    {
+      "name": "figma",
+      "label": "Figma"
     }
   ]
 }

@@ -60,7 +60,7 @@ function Carousel({ imgs = [] }: { imgs: string[] }) {
               height={375}
               onLoad={() => changeLoadingByIndex(i, isLoading)}
               priority={i === 0}
-              className={`rounded-md transition-all duration-300 ease-in-out ${
+              className={`rounded-md transition-all duration-300 ease-in-out aspect-[500/375] ${
                 img === currentImg ? 'block' : 'hidden'
               }`}
             />

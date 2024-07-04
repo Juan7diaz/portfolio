@@ -5,6 +5,7 @@ import {
   FaNodeJs,
   FaGit,
   FaGithub,
+  FaFigma,
 } from 'react-icons/fa';
 import {
   SiJavascript,
@@ -37,6 +38,7 @@ const matcher = {
   azuredevops: SiAzuredevops,
   bash: SiGnubash,
   nextjs: TbBrandNextjs,
+  figma: FaFigma,
 };
 
 export type MatcherKey = keyof typeof matcher;
