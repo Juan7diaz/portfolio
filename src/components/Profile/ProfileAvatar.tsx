@@ -7,7 +7,7 @@ function ProfileAvatar({ img }: { img: string }) {
         src={img}
         alt="Profile avatar"
         priority
-        className="h-32 w-32 rounded-full border-4 border-primary-transparent"
+        className="h-32 w-32 rounded-full border-4 border-white"
         width={400}
         height={400}
       />

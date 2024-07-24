@@ -8,7 +8,7 @@ function H1({ children }: { children: React.ReactNode }) {
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-2 mt-10 text-xl leading-7 text-text-primary md:leading-10">
+    <h2 className="mb-2 mt-10 text-xl font-bold leading-7 text-text-primary md:leading-10">
       {children}
     </h2>
   );
@@ -16,7 +16,7 @@ function H2({ children }: { children: React.ReactNode }) {
 
 function H3({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="my-5 text-xl leading-7 text-text-primary md:leading-10">
+    <h3 className="my-5 text-xl font-semibold leading-7 text-text-primary md:leading-10">
       {children}
     </h3>
   );

@@ -91,8 +91,8 @@ function Carousel({ imgs = [] }: { imgs: string[] }) {
           <button
             key={img}
             type="button"
-            className={`mx-2 hidden h-2 w-2 rounded-full md:block ${
-              img === currentImg ? 'bg-primary-base' : 'bg-text-tertiary'
+            className={`mx-2 hidden h-2 w-2 rounded-full md:block transition-all ${
+              img === currentImg ? 'bg-primary-base w-5' : 'bg-text-tertiary'
             }`}
             onClick={() => setCurrentImg(img)}
             aria-label={`botón para mostrar la imagen ${index + 1}`}
