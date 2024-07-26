@@ -47,17 +47,17 @@ function Carousel({ imgs = [] }: { imgs: string[] }) {
           <IoIosArrowBack className="h-10 w-10 text-primary-base" />
         </button>
 
-        <div className="h-500 w-375 relative">
+        <div className="h-370 w-550 relative">
           {isLoading[imgs.indexOf(currentImg)] && (
-            <div className="h-500 w-375 absolute inset-0 animate-pulse rounded-md bg-gray-300" />
+            <div className="h-370 w-550 absolute inset-0 animate-pulse rounded-md bg-gray-300" />
           )}
           {imgs.map((img, i) => (
             <Image
               key={img}
               src={img}
-              alt="Project image h-500 w-375"
-              width={500}
-              height={375}
+              alt="imagen del producto"
+              width={550}
+              height={370}
               onLoad={() => changeLoadingByIndex(i, isLoading)}
               priority={i === 0}
               className={`rounded-md transition-all duration-300 ease-in-out aspect-[500/375] ${
