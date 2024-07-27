@@ -25,9 +25,9 @@ function CardEducation({
         className="rounded-lg"
       />
       <div className="flex-grow">
-        <h3 className="text-lg font-semibold text-text-primary">
+        <h2 className="text-lg font-semibold text-text-primary">
           {instituteName}
-        </h3>
+        </h2>
         <p className="text-text-secondary">{degree}</p>
         <p className="text-text-tertiary">
           {startDate} - {endDate}

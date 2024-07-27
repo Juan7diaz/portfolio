@@ -9,11 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#15191d",
+        background: "#010a1a",
         primary: {
-          base: "#FFD700",
-          hover: "#caaa00",
-          transparent: "#ffd60259",
+          base: "#94e4dc",
         },
         text: {
           primary: "#FFFFFFE6",

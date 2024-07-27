@@ -19,7 +19,7 @@ function CustomLink({ url, text, IconComponent, OpenAnotherTab, positionIcon = "
       target={OpenAnotherTab ? '_blank' : '_self'}
       className="mt-2 flex items-center space-x-5 text-sm font-semibold text-primary-base hover:underline"
     >
-      <span className="inline-flex items-center space-x-2 rounded-md px-2 py-1 hover:bg-primary-transparent">
+      <span className="inline-flex items-center space-x-2 rounded-md px-2 py-1 hover:bg-primary-base/25">
         {IconComponent && positionIcon === "left" && <IconComponent className="mr-2" />}
         {text}
         {IconComponent && positionIcon === "right" && <IconComponent className="ml-2" />}

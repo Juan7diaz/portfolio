@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ProjectFrontmatter } from '@/interfaces/ProjectFrontmatter.interface';
 import { FaGithub } from 'react-icons/fa';
+import Link from 'next/link';
 import CustomLink from '../common/CustomLink';
 
 function ProjectCard({ project }: { project: ProjectFrontmatter }) {
@@ -16,8 +17,10 @@ function ProjectCard({ project }: { project: ProjectFrontmatter }) {
         />
       </div>
       <div className="mt-4 w-full sm:ml-4 sm:mt-0 sm:w-2/3">
-        <h2 className="text-xl font-bold text-text-secondary">
-          {project.name}
+        <h2 className="text-xl font-bold text-text-secondary hover:text-primary-base">
+          <Link href={`/project/${encodeURI(project.fileName)}`}>
+            {project.name}
+          </Link>
         </h2>
         <div className="my-1 flex flex-row space-x-2 text-sm text-text-tertiary">
           <p>{project.role}</p>

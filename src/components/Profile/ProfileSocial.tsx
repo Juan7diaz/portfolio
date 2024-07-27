@@ -13,7 +13,7 @@ function ProfileSocial({ showCv = true }: { showCv?: boolean }) {
   };
 
   const commonClasses =
-    'group border-1 transform rounded-md border p-2 transition hover:scale-110 hover:cursor-pointer hover:bg-primary-transparent border-text-secondary';
+    'group border-1 transform rounded-md border p-2 transition hover:scale-110 hover:cursor-pointer hover:bg-primary-base/25 border-text-secondary';
   const iconClasses =
     'text-text-secondary transition-colors group-hover:text-text-primary';
   const textClasses =

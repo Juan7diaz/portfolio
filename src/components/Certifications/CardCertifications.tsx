@@ -29,7 +29,7 @@ function CardCertifications({
         className="rounded-lg"
       />
       <div className="flex-grow">
-        <h3 className="text-lg font-semibold text-text-primary">{title}</h3>
+        <h2 className="text-lg font-semibold text-text-primary">{title}</h2>
         <p className="text-text-secondary">{
         issuer}</p>
         <p className="text-text-tertiary">Expedición: {issueDate}</p>
