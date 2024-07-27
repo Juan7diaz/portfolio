@@ -4,6 +4,8 @@ import './globals.css';
 import Footer from '@/components/common/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Logo from '@/components/common/Logo';
+import { Analytics } from "@vercel/analytics/react"
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +30,7 @@ export default function AppLayout({
         </div>
         <Footer />
         <SpeedInsights />
+        <Analytics/>
       </body>
     </html>
   );
