@@ -1,6 +1,10 @@
 {
   "profile": {
     "name": "Juan Diaz Guerrero",
+    "headline": "Frontend Developer",
+    "tagline": "Construyo interfaces que se sienten tan bien como se ven.",
+    "focus": "Frontend con React y TypeScript",
+    "currently": "Profundizando en Spring Boot",
     "description": "Ingeniero de sistemas | Frontend developer | ReactJS",
     "location": "Santa Marta, Magdalena, Colombia",
     "bannerLink": "/img/banner.webp",
@@ -19,7 +23,7 @@
   "contact": {
     "email": {
       "label": "Email",
-      "value": "juanluisdiazguerrer@gmail.com"
+      "value": "juanluisdiazguerrero@gmail.com"
     },
     "linkedin": {
       "label": "LinkedIn",
@@ -43,7 +47,7 @@
       "title": "React: De cero a experto ( Hooks y MERN )",
       "issuer": "Udemy",
       "issueDate": "Jun. 2024",
-      "credentialId": "UC-#3554bf-6180-4cle-bc12-1f48b8d3249a",
+      "credentialId": "UC-ff3554bf-6180-4c1e-bc12-1f48b8d3249a",
       "credentialUrl": "https://www.udemy.com/certificate/UC-ff3554bf-6180-4c1e-bc12-1f48b8d3249a/"
     },
     {
