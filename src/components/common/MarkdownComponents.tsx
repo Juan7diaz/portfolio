@@ -1,14 +1,18 @@
 import Image from 'next/image';
-import TitleSection from './TitleSection';
-import CustomLink from './CustomLink';
+import { FiArrowUpRight } from 'react-icons/fi';
+import CodeCopyButton from '@/components/ui/CodeCopyButton';
 
 function H1({ children }: { children: React.ReactNode }) {
-  return <TitleSection title={children as string} />;
+  return (
+    <h2 className="mb-4 mt-16 text-3xl font-semibold tracking-display text-text-primary md:text-4xl">
+      {children}
+    </h2>
+  );
 }
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-2 mt-10 text-xl font-bold leading-7 text-text-primary md:leading-10">
+    <h2 className="mb-4 mt-14 text-2xl font-semibold tracking-display text-text-primary md:text-[32px] md:leading-tight">
       {children}
     </h2>
   );
@@ -16,7 +20,7 @@ function H2({ children }: { children: React.ReactNode }) {
 
 function H3({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="my-5 text-xl font-semibold leading-7 text-text-primary md:leading-10">
+    <h3 className="mb-3 mt-10 text-xl font-semibold tracking-tight text-text-primary">
       {children}
     </h3>
   );
@@ -24,7 +28,7 @@ function H3({ children }: { children: React.ReactNode }) {
 
 function P({ children }: { children: React.ReactNode }) {
   return (
-    <p className="my-2 leading-7 text-text-secondary md:leading-10">
+    <p className="my-5 text-[17px] leading-[1.65] text-text-secondary md:text-[19px]">
       {children}
     </p>
   );
@@ -32,7 +36,7 @@ function P({ children }: { children: React.ReactNode }) {
 
 function UL({ children }: { children: React.ReactNode }) {
   return (
-    <ul className="my-2 list-outside list-disc pl-5 leading-7 text-text-secondary md:leading-10">
+    <ul className="my-5 space-y-3 text-[17px] leading-[1.6] text-text-secondary md:text-[19px]">
       {children}
     </ul>
   );
@@ -40,23 +44,43 @@ function UL({ children }: { children: React.ReactNode }) {
 
 function OL({ children }: { children: React.ReactNode }) {
   return (
-    <ol className="my-2 list-inside list-decimal leading-7 text-text-secondary md:leading-10">
+    <ol className="my-5 list-decimal space-y-3 pl-5 text-[17px] leading-[1.6] text-text-secondary marker:text-text-tertiary md:text-[19px] [&>li]:pl-1 [&>li]:before:hidden">
       {children}
     </ol>
   );
 }
 
 function LI({ children }: { children: React.ReactNode }) {
-  return <li className="mb-1 pl-5 -indent-5 md:mb-0">{children}</li>;
+  return (
+    <li className="relative pl-5 before:absolute before:left-0 before:top-[0.7em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-text-tertiary">
+      {children}
+    </li>
+  );
 }
 
 function A({ href, children }: { href: string; children: React.ReactNode }) {
-  return <CustomLink text={children as string} url={href} />;
+  const external = href?.startsWith('http');
+  return (
+    <a
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      className="pressable group mb-2 mr-2 inline-flex items-center gap-1 rounded-full border border-hairline bg-white/[0.04] px-3.5 py-1.5 text-[15px] font-medium text-accent hover:border-accent/40 hover:bg-accent/10"
+    >
+      {children}
+      {external && (
+        <FiArrowUpRight
+          aria-hidden
+          className="transition-transform duration-500 ease-spring group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
+      )}
+    </a>
+  );
 }
 
 function BLOCKQUOTE({ children }: { children: React.ReactNode }) {
   return (
-    <blockquote className="my-9 border-l-4 border-primary-base pl-4 italic">
+    <blockquote className="my-10 rounded-3xl border border-white/[0.06] bg-surface px-6 py-2 text-text-secondary md:px-8 md:py-4 [&_li]:my-0 [&_p]:my-3 [&_ul]:my-3">
       {children}
     </blockquote>
   );
@@ -64,17 +88,19 @@ function BLOCKQUOTE({ children }: { children: React.ReactNode }) {
 
 function IMG({ src, alt }: { src: string; alt: string }) {
   return (
-    <span className="my-4 block">
-      <span className="flex flex-col items-center justify-center">
-        <Image
-          src={src}
-          alt={alt}
-          className="rounded-lg shadow-lg"
-          width={600}
-          height={600}
-        />
-        <span className="mt-2 text-sm italic text-text-tertiary">{alt}</span>
-      </span>
+    <span className="my-10 block">
+      <Image
+        src={src}
+        alt={alt}
+        className="w-full rounded-3xl border border-white/[0.06]"
+        width={1200}
+        height={800}
+      />
+      {alt && (
+        <span className="mt-3 block text-center text-sm text-text-tertiary">
+          {alt}
+        </span>
+      )}
     </span>
   );
 }
@@ -85,7 +111,6 @@ function Code({
   node,
 }: {
   children: React.ReactNode;
-  // eslint-disable-next-line react/require-default-props
   className?: string;
   node: any;
 }) {
@@ -100,36 +125,42 @@ function Code({
 
   if (isInline) {
     return (
-      <code className="rounded bg-[#2c303a] px-1 py-0.5 font-mono text-sm text-text-codeInLine">
+      <code className="rounded-md bg-white/[0.08] px-1.5 py-0.5 font-mono text-[0.88em] text-text-codeInLine">
         {children}
       </code>
     );
   }
 
   return (
-    <div className="relative mb-4 mt-10">
-      {fileName && (
-        <div className="absolute -top-6 inline-block">
-          <div className="flex items-center">
-            <span className="rounded-t-lg border-x border-t border-primary-base/40 bg-[#1a1f24] px-3 py-1 text-xs text-text-code">
-              📁 {fileName}
-            </span>
-          </div>
-        </div>
-      )}
-      <pre className="overflow-x-auto rounded-lg rounded-tl-none border-[1px] border-primary-base/40 bg-[#1a1f24] p-4 text-text-code shadow-sm">
+    <div className="my-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d0d0e]">
+      <span className="flex items-center justify-between border-b border-white/[0.06] py-2 pl-4 pr-2">
+        <span className="flex items-center gap-3">
+          <span aria-hidden className="flex gap-1.5">
+            <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+            <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+            <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+          </span>
+          <span className="font-mono text-xs text-text-tertiary">
+            {fileName ?? lang ?? 'código'}
+          </span>
+        </span>
+        <CodeCopyButton code={String(children).replace(/\n$/, '')} />
+      </span>
+      <pre className="overflow-x-auto p-5 font-mono text-sm leading-relaxed text-text-code">
         <code className={className}>{children}</code>
       </pre>
-      <span className="mt-1 block text-xs italic text-text-tertiary">
-        lang: {lang}
-      </span>
     </div>
   );
 }
 
+// El bloque de código ya dibuja su propio <pre>
+function PRE({ children }: { children: React.ReactNode }) {
+  return children;
+}
+
 function STRONG({ children }: { children: React.ReactNode }) {
   return (
-    <strong className="font-semibold text-primary-base">{children}</strong>
+    <strong className="font-semibold text-text-primary">{children}</strong>
   );
 }
 
@@ -144,6 +175,7 @@ const MarkdownComponents = {
   a: A,
   blockquote: BLOCKQUOTE,
   code: Code,
+  pre: PRE,
   img: IMG,
   strong: STRONG,
 };
