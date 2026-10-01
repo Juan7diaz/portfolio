@@ -1,10 +1,20 @@
 import getProjects from '@/utils/getProjects';
 import Section from '@/components/common/Section';
-import Reveal from '@/components/ui/Reveal';
-import ProjectCard from './ProjectCard';
+import ProjectIndex, { ProjectItem } from './ProjectIndex';
+
+// "Feb. 2023 - Jun. 2023" -> "2023"
+const lastYear = (date: string) => date.match(/\d{4}/g)?.pop() ?? date;
 
 function Projects() {
-  const projects = getProjects();
+  const projects: ProjectItem[] = getProjects().map((p) => ({
+    slug: p.fileName,
+    name: p.name,
+    type: p.type,
+    year: lastYear(p.date),
+    summary: p.resumen,
+    stack: p.technologies ?? [],
+    cover: p.coverImage,
+  }));
 
   return (
     <Section
@@ -13,18 +23,7 @@ function Projects() {
       title="Cosas que he construido."
       description="Del diseño de la interfaz a la API que la sostiene. Cada proyecto, una oportunidad para resolver un problema real."
     >
-      <ul className="grid gap-5 md:grid-cols-2">
-        {projects.map((project, i) => (
-          <Reveal
-            as="li"
-            key={project.fileName}
-            delay={(i % 2) * 120}
-            className={i === 0 ? 'md:col-span-2' : ''}
-          >
-            <ProjectCard project={project} featured={i === 0} />
-          </Reveal>
-        ))}
-      </ul>
+      <ProjectIndex projects={projects} />
     </Section>
   );
 }

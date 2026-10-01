@@ -3,6 +3,8 @@
     "name": "Juan Diaz Guerrero",
     "headline": "Frontend Developer",
     "tagline": "Construyo interfaces que se sienten tan bien como se ven.",
+    "focus": "Frontend con React y TypeScript",
+    "currently": "Profundizando en Spring Boot",
     "description": "Ingeniero de sistemas | Frontend developer | ReactJS",
     "location": "Santa Marta, Magdalena, Colombia",
     "bannerLink": "/img/banner.webp",

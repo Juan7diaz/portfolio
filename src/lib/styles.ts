@@ -9,3 +9,6 @@ export const iconButton =
   'pressable flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-white/[0.04] text-text-secondary hover:border-white/20 hover:bg-white/[0.1] hover:text-text-primary';
 
 export const container = 'mx-auto w-full max-w-[1024px] px-6';
+
+export const btnLight =
+  'pressable group inline-flex items-center justify-center gap-2 rounded-full bg-text-primary px-6 py-3 text-[15px] font-medium text-black hover:bg-white';

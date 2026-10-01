@@ -1,142 +1,155 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiDownload, FiMapPin } from 'react-icons/fi';
-import { FaGraduationCap } from 'react-icons/fa';
-import { IoChevronForward } from 'react-icons/io5';
+import React from 'react';
+import { FiArrowDown, FiDownload } from 'react-icons/fi';
 import cv from '@/data/cv.json';
-import Reveal from '@/components/ui/Reveal';
-import SocialLinks from '@/components/ui/SocialLinks';
-import { btnPrimary, btnSecondary, container } from '@/lib/styles';
+import { btnLight, container } from '@/lib/styles';
+
+const WORD_DELAY = 55;
+const START = 200;
+
+// Cada palabra sube desde una máscara, en cascada
+function Words({
+  text,
+  from,
+  className = '',
+}: {
+  text: string;
+  from: number;
+  className?: string;
+}) {
+  return (
+    <>
+      {text.split(' ').map((word, i) => (
+        <React.Fragment key={`${word}-${from + i}`}>
+          <span className="-mb-[0.1em] inline-block overflow-hidden pb-[0.1em] align-bottom">
+            <span
+              className={`inline-block animate-word-up ${className}`}
+              style={{ animationDelay: `${START + (from + i) * WORD_DELAY}ms` }}
+            >
+              {word}
+            </span>
+          </span>{' '}
+        </React.Fragment>
+      ))}
+    </>
+  );
+}
 
 function Hero() {
   const { profile, education, contact } = cv;
+  const firstName = profile.name.split(' ')[0];
+  const [edu] = education;
+
+  const intro = `Hola, soy ${firstName}`;
+  const line = 'Construyo interfaces';
+  const muted = 'que se sienten tan bien como se ven.';
+  const introCount = intro.split(' ').length;
+  const lineStart = introCount + 1;
+  const mutedStart = lineStart + line.split(' ').length;
+  const totalWords = mutedStart + muted.split(' ').length;
+  const after = START + totalWords * WORD_DELAY;
+
+  const specs = [
+    { label: 'Enfoque', value: profile.focus },
+    { label: 'Actualmente', value: profile.currently },
+    { label: 'Ubicación', value: profile.location.replace(', Magdalena', '') },
+    edu && { label: 'Formación', value: `${edu.degree}, ${edu.instituteName}` },
+  ].filter(Boolean) as { label: string; value: string }[];
 
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[calc(var(--nav-height)+48px)]"
+      className="flex min-h-[100svh] flex-col pb-10 pt-[calc(var(--nav-height)+24px)] md:pt-[calc(var(--nav-height)+40px)]"
     >
-      {/* Luz ambiental que respira lentamente */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[8%] top-[14%] h-[420px] w-[420px] animate-float rounded-full bg-accent/25 blur-[120px] sm:left-[22%]" />
-        <div className="absolute right-[6%] top-[28%] h-[380px] w-[380px] animate-float rounded-full bg-[#bf5af2]/20 blur-[120px] [animation-delay:-7s] sm:right-[20%]" />
+      <div className={`${container} flex flex-1 flex-col`}>
         <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-            maskImage:
-              'radial-gradient(ellipse 60% 50% at 50% 40%, #000 30%, transparent 100%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 60% 50% at 50% 40%, #000 30%, transparent 100%)',
-          }}
-        />
-      </div>
-
-      <div className={`${container} flex flex-col items-center text-center`}>
-        <Reveal>
-          <div className="group relative h-28 w-28 transition-transform duration-700 ease-spring hover:scale-105">
-            <div className="absolute -inset-[3px] animate-[spin_8s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,#5ac8fa,#2997ff,#bf5af2,#5ac8fa)] opacity-80 blur-[1px] transition-opacity duration-500 group-hover:opacity-100" />
-            <Image
-              src={profile.avatarLink}
-              alt={`Foto de ${profile.name}`}
-              priority
-              width={224}
-              height={224}
-              className="relative h-28 w-28 rounded-full border-[3px] border-black object-cover"
-            />
-            {profile.openToWork && (
-              <span
-                className="absolute bottom-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-black"
-                aria-hidden
-              >
-                <span className="h-3 w-3 rounded-full bg-success" />
-              </span>
-            )}
-          </div>
-        </Reveal>
-
-        {profile.openToWork && (
-          <Reveal delay={80} className="mt-7">
-            <span className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-hairline bg-white/[0.04] py-1.5 pl-3 pr-3.5 text-xs font-medium text-text-secondary">
+          className="flex animate-fade-in items-center justify-between gap-4 border-b border-hairline pb-4 text-[13px] text-text-tertiary"
+          style={{ animationDelay: '100ms' }}
+        >
+          <span>
+            <span className="text-text-secondary">{profile.headline}</span>
+            <span className="hidden sm:inline">
+              {' '}
+              — Portafolio {new Date().getFullYear()}
+            </span>
+          </span>
+          {profile.openToWork && (
+            <span className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inset-0 animate-ping rounded-full bg-success opacity-75" />
                 <span className="relative h-2 w-2 rounded-full bg-success" />
               </span>
-              Disponible para nuevas oportunidades
-              <span
-                aria-hidden
-                className="absolute inset-0 animate-shine bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"
-              />
+              Disponible para trabajar
             </span>
-          </Reveal>
-        )}
+          )}
+        </div>
 
-        <h1 className="mt-6 text-[44px] font-semibold leading-[1.04] tracking-tightest sm:text-7xl md:text-[88px]">
-          <Reveal delay={160} as="span" className="block text-text-primary">
-            {profile.name}
-          </Reveal>
-          <Reveal delay={240} as="span" className="block pb-2">
-            <span className="text-gradient animate-gradient-pan">
-              {profile.headline}.
+        <h1 className="mt-auto pt-12 text-[44px] font-semibold leading-[1.02] tracking-tightest text-text-primary sm:text-[68px] md:pt-16 lg:text-[88px]">
+          <Words text={intro} from={0} />
+          {/* Foto incrustada en el titular: se expande al pasar el cursor */}
+          <span className="-mb-[0.1em] inline-block overflow-hidden pb-[0.1em] align-bottom">
+            <span
+              className="inline-block animate-word-up"
+              style={{ animationDelay: `${START + introCount * WORD_DELAY}ms` }}
+            >
+              <span className="group relative inline-block h-[0.78em] w-[1.45em] translate-y-[0.06em] overflow-hidden rounded-full bg-surface align-baseline transition-[width] duration-700 ease-spring hover:w-[2.3em]">
+                <Image
+                  src={profile.avatarLink}
+                  alt={`Foto de ${profile.name}`}
+                  fill
+                  priority
+                  sizes="240px"
+                  className="object-cover object-[50%_30%] transition-transform duration-700 ease-out-expo group-hover:scale-110"
+                />
+              </span>
             </span>
-          </Reveal>
+          </span>{' '}
+          <br className="hidden sm:block" />
+          <Words text={line} from={lineStart} />
+          <Words text={muted} from={mutedStart} className="text-[#86868b]" />
         </h1>
 
-        <Reveal delay={320}>
-          <p className="mx-auto mt-4 max-w-2xl text-xl font-medium leading-snug tracking-tight text-text-secondary md:text-2xl">
-            {profile.tagline}
-          </p>
-        </Reveal>
-
-        <Reveal delay={400}>
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-text-tertiary">
-            <li className="flex items-center gap-1.5">
-              <FiMapPin aria-hidden />
-              {profile.location}
-            </li>
-            {education.length > 0 && (
-              <li className="flex items-center gap-1.5">
-                <FaGraduationCap aria-hidden />
-                {education[0].instituteName}
-              </li>
-            )}
-          </ul>
-        </Reveal>
-
-        <Reveal delay={480}>
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-            <Link href="#proyectos" className={btnPrimary}>
-              Ver proyectos
-              <IoChevronForward
-                aria-hidden
-                className="transition-transform duration-500 ease-spring group-hover:translate-x-0.5"
-              />
-            </Link>
-            <a href={contact.cv.value} download className={btnSecondary}>
-              <FiDownload
-                aria-hidden
-                className="transition-transform duration-500 ease-spring group-hover:translate-y-[2px]"
-              />
+        <div
+          className="mt-10 flex animate-fade-in flex-wrap items-center gap-x-6 gap-y-4"
+          style={{ animationDelay: `${after}ms` }}
+        >
+          <Link href="#proyectos" className={btnLight}>
+            Ver proyectos
+            <FiArrowDown
+              aria-hidden
+              className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+            />
+          </Link>
+          <a
+            href={contact.cv.value}
+            download
+            className="group inline-flex items-center gap-2 text-[15px] font-medium text-text-secondary transition-colors duration-300 hover:text-text-primary"
+          >
+            <FiDownload
+              aria-hidden
+              className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+            />
+            <span className="bg-gradient-to-r from-current to-current bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 ease-out-expo group-hover:bg-[length:100%_1px]">
               Descargar CV
-            </a>
-          </div>
-        </Reveal>
-
-        <Reveal delay={560} className="mt-8">
-          <SocialLinks />
-        </Reveal>
-      </div>
-
-      {/* Indicador de scroll */}
-      <div
-        aria-hidden
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 [@media(min-height:760px)]:block"
-      >
-        <div className="flex h-9 w-[22px] justify-center rounded-full border border-white/20 pt-2">
-          <span className="h-1.5 w-1 animate-scroll-hint rounded-full bg-white/60" />
+            </span>
+          </a>
         </div>
+
+        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-hairline pt-6 md:mt-14 md:grid-cols-4">
+          {specs.map((s, i) => (
+            <div
+              key={s.label}
+              className="animate-fade-in"
+              style={{ animationDelay: `${after + 150 + i * 90}ms` }}
+            >
+              <dt className="text-xs text-text-tertiary">{s.label}</dt>
+              <dd className="mt-1 text-[15px] leading-snug text-text-primary">
+                {s.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

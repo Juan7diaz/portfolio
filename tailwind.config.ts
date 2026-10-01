@@ -87,6 +87,14 @@ const config: Config = {
           '0%': { opacity: '1' },
           '100%': { opacity: '0.15' },
         },
+        'word-up': {
+          '0%': { transform: 'translate3d(0, 105%, 0)' },
+          '100%': { transform: 'translate3d(0, 0, 0)' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
         'scroll-hint': {
           '0%': { transform: 'translateY(0)', opacity: '0' },
           '30%': { opacity: '1' },
@@ -102,6 +110,8 @@ const config: Config = {
         'spinner-fade': 'spinner-fade 1s linear infinite',
         'scroll-hint':
           'scroll-hint 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite',
+        'word-up': 'word-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-in': 'fade-in 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) both',
       },
     },
   },
