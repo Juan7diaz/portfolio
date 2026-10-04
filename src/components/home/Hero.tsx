@@ -6,12 +6,11 @@ import CountUp from '@/components/ui/CountUp';
 import LocalTime from '@/components/ui/LocalTime';
 import { container } from '@/lib/styles';
 
-const lines: React.ReactNode[] = [
-  'Construyo',
-  'experiencias',
-  <em key="em" className="italic text-accent">
-    digitales
-  </em>,
+const handles = [
+  '-left-[3.5px] -top-[3.5px]',
+  '-right-[3.5px] -top-[3.5px]',
+  '-bottom-[3.5px] -left-[3.5px]',
+  '-bottom-[3.5px] -right-[3.5px]',
 ];
 
 // Retraso (ms) de cada pieza, encadenado tras la cortina del preloader
@@ -43,83 +42,127 @@ function Hero() {
       id="inicio"
       className={`${container} relative flex min-h-[100svh] flex-col pb-10 pt-28 md:pt-24`}
     >
-      <div className="my-auto grid gap-10 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
-        <div>
-          <p
-            className="label await-ready flex animate-fade-up items-center gap-2 text-accent before:h-px before:w-5 before:bg-accent"
-            style={d(100)}
-          >
-            {profile.headline}
-          </p>
+      <div className="my-auto">
+        <p
+          className="label await-ready flex animate-fade-up items-center gap-2 text-accent before:h-px before:w-5 before:bg-accent"
+          style={d(100)}
+        >
+          {profile.headline}
+          <span className="text-text-tertiary">
+            · {profile.location.split(',')[0]}, CO
+          </span>
+        </p>
 
-          <h1 className="mt-5 font-serif text-[clamp(42px,6.2vw,88px)] font-light leading-[1.04] tracking-[-0.02em]">
-            {lines.map((line, i) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <span key={i} className="block overflow-hidden pb-[0.06em]">
+        <h1 className="mt-6 font-serif text-[clamp(60px,16vw,184px)] font-light leading-[0.94] tracking-[-0.035em]">
+          <span
+            className="await-ready block animate-line-mask pb-[0.04em]"
+            style={d(180)}
+          >
+            <span
+              className="await-ready inline-block animate-line-up"
+              style={d(180)}
+            >
+              De {/* "Figma" seleccionado como en la herramienta de diseño */}
+              <span className="group/figma relative inline-block">
+                <em className="italic text-accent">Figma</em>
                 <span
-                  className="await-ready inline-block animate-line-up"
-                  style={d(180 + i * 120)}
+                  aria-hidden
+                  className="await-ready pointer-events-none absolute -inset-x-[0.06em] -bottom-[0.2em] top-[0.16em] animate-frame-in border border-accent/60 transition-colors duration-300 group-hover/figma:border-accent"
+                  style={d(1150)}
                 >
-                  {line}
+                  {handles.map((pos, i) => (
+                    <span
+                      key={pos}
+                      className={`await-ready absolute h-[7px] w-[7px] animate-handle-in border border-accent bg-background transition-transform duration-300 group-hover/figma:scale-125 ${pos}`}
+                      style={d(1250 + i * 60)}
+                    />
+                  ))}
+                  <span
+                    className="await-ready absolute -top-[22px] left-[-1px] hidden animate-fade-in whitespace-nowrap bg-accent px-1.5 py-[3px] font-mono text-[9px] font-medium not-italic leading-none tracking-[0.04em] text-background md:block"
+                    style={d(1450)}
+                  >
+                    Frame · Hero
+                  </span>
+                  <span
+                    className="await-ready absolute -bottom-[22px] right-[-1px] hidden animate-fade-in whitespace-nowrap bg-accent px-1.5 py-[3px] font-mono text-[9px] font-medium not-italic leading-none tracking-[0.04em] text-background md:block"
+                    style={d(1500)}
+                  >
+                    1440 × 900
+                  </span>
                 </span>
               </span>
-            ))}
-          </h1>
-
-          <p
-            className="await-ready mt-5 max-w-[400px] animate-fade-up text-[14px] font-light leading-[1.7] text-text-secondary"
-            style={d(520)}
+            </span>
+          </span>
+          <span
+            className="await-ready block animate-line-mask pb-[0.06em] md:pl-[11%]"
+            style={d(300)}
           >
-            <span className="text-text-primary">{profile.name}</span> —{' '}
-            {profile.intro}
-          </p>
+            <span
+              className="await-ready inline-block animate-line-up"
+              style={d(300)}
+            >
+              a producción<span className="text-accent">.</span>
+            </span>
+          </span>
+        </h1>
+
+        <div className="mt-12 grid gap-10 md:mt-16 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
+          <div>
+            <p
+              className="await-ready max-w-[460px] animate-fade-up text-[14px] font-light leading-[1.7] text-text-secondary md:text-[15px]"
+              style={d(560)}
+            >
+              <span className="text-text-primary">{profile.name}</span> —{' '}
+              {profile.intro}
+            </p>
+
+            <div
+              className="await-ready mt-8 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4"
+              style={d(680)}
+            >
+              <Link href="#proyectos" className="pill group">
+                Ver proyectos
+                <span
+                  aria-hidden
+                  className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+                >
+                  ↓
+                </span>
+              </Link>
+              <a
+                href={cv.contact.cv.value}
+                download
+                className="group font-mono text-[11px] tracking-[0.06em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
+              >
+                <span className="link-draw pb-0.5">Descargar CV</span>
+                <span
+                  aria-hidden
+                  className="ml-1.5 inline-block text-accent transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+                >
+                  ↓
+                </span>
+              </a>
+            </div>
+          </div>
 
           <div
-            className="await-ready mt-8 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4"
-            style={d(640)}
+            className="await-ready flex animate-fade-up gap-8 md:gap-10"
+            style={d(800)}
           >
-            <Link href="#proyectos" className="pill group">
-              Ver proyectos
-              <span
-                aria-hidden
-                className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
-              >
-                ↓
-              </span>
-            </Link>
-            <a
-              href={cv.contact.cv.value}
-              download
-              className="group font-mono text-[11px] tracking-[0.06em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
-            >
-              <span className="link-draw pb-0.5">Descargar CV</span>
-              <span
-                aria-hidden
-                className="ml-1.5 inline-block text-accent transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
-              >
-                ↓
-              </span>
-            </a>
+            {stats.map((st, i) => (
+              <div key={st.label} className="group text-left md:text-center">
+                <p className="font-serif text-[clamp(30px,3.4vw,40px)] font-light leading-none text-text-primary">
+                  <CountUp value={st.value} delay={i * 120} />
+                  <span className="inline-block text-accent transition-transform duration-500 ease-spring group-hover:-translate-y-1 group-hover:rotate-90">
+                    +
+                  </span>
+                </p>
+                <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
+                  {st.label}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
-
-        <div
-          className="await-ready flex animate-fade-up gap-8 md:gap-10"
-          style={d(760)}
-        >
-          {stats.map((s, i) => (
-            <div key={s.label} className="group text-left md:text-center">
-              <p className="font-serif text-[clamp(30px,3.4vw,40px)] font-light leading-none text-text-primary">
-                <CountUp value={s.value} delay={i * 120} />
-                <span className="inline-block text-accent transition-transform duration-500 ease-spring group-hover:-translate-y-1 group-hover:rotate-90">
-                  +
-                </span>
-              </p>
-              <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
-                {s.label}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 

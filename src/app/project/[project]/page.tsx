@@ -42,7 +42,7 @@ function ProjectPage({ params }: Params) {
   return (
     <div className={container}>
       <ProjectHeader data={data} />
-      <Reveal delay={360}>
+      <Reveal delay={360} className="mx-auto max-w-[880px]">
         <Carousel imgs={data.carouselImages} alt={data.name} />
       </Reveal>
       <article className="mx-auto max-w-[720px]">

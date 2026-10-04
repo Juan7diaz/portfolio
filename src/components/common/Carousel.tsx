@@ -84,7 +84,7 @@ function Carousel({
               src={img}
               alt={`${alt} — captura ${i + 1} de ${count}`}
               fill
-              sizes="(min-width: 1200px) 1120px, 100vw"
+              sizes="(min-width: 960px) 880px, 100vw"
               priority={i === 0}
               draggable={false}
               onLoad={() => setLoaded((l) => ({ ...l, [i]: true }))}

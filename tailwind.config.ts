@@ -53,6 +53,20 @@ const config: Config = {
           '0%': { transform: 'translate3d(0, 110%, 0)' },
           '100%': { transform: 'translate3d(0, 0, 0)' },
         },
+        // Recorta el texto mientras sube y luego lo libera (para que el marco
+        // de "Figma" pueda sobresalir de la línea)
+        'line-mask': {
+          '0%, 99.9%': { clipPath: 'inset(0 -20% 0 -20%)' },
+          '100%': { clipPath: 'inset(-80% -20% -80% -20%)' },
+        },
+        'frame-in': {
+          '0%': { opacity: '0', transform: 'scale(1.06)' },
+          '100%': { opacity: '1', transform: 'none' },
+        },
+        'handle-in': {
+          '0%': { opacity: '0', transform: 'scale(0)' },
+          '100%': { opacity: '1', transform: 'none' },
+        },
         'fade-up': {
           '0%': { opacity: '0', transform: 'translate3d(0, 12px, 0)' },
           '100%': { opacity: '1', transform: 'none' },
@@ -103,6 +117,9 @@ const config: Config = {
       },
       animation: {
         'line-up': 'line-up 0.9s cubic-bezier(0.23, 1, 0.32, 1) both',
+        'line-mask': 'line-mask 0.9s linear both',
+        'frame-in': 'frame-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) both',
+        'handle-in': 'handle-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both',
         'fade-up': 'fade-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) both',
         'fade-in': 'fade-in 0.6s ease both',
         'load-bar': 'load-bar 1.4s cubic-bezier(0.65, 0, 0.35, 1) both',
