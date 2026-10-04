@@ -6,13 +6,6 @@ import CountUp from '@/components/ui/CountUp';
 import LocalTime from '@/components/ui/LocalTime';
 import { container } from '@/lib/styles';
 
-const handles = [
-  '-left-[3.5px] -top-[3.5px]',
-  '-right-[3.5px] -top-[3.5px]',
-  '-bottom-[3.5px] -left-[3.5px]',
-  '-bottom-[3.5px] -right-[3.5px]',
-];
-
 // Retraso (ms) de cada pieza, encadenado tras la cortina del preloader
 const d = (ms: number) => ({ animationDelay: `${ms}ms` });
 
@@ -32,7 +25,6 @@ function Hero() {
 
   const strip = [
     profile.location.replace(', Magdalena', ''),
-    current && `${current.company} — ${current.role}`,
     edu &&
       `${edu.instituteName.replace('Universidad', 'Univ.')} '${edu.endDate.slice(-2)}`,
   ].filter(Boolean) as string[];
@@ -42,134 +34,120 @@ function Hero() {
       id="inicio"
       className={`${container} relative flex min-h-[100svh] flex-col pb-10 pt-28 md:pt-24`}
     >
-      <div className="my-auto">
-        <p
-          className="label await-ready flex animate-fade-up items-center gap-2 text-accent before:h-px before:w-5 before:bg-accent"
-          style={d(100)}
-        >
-          {profile.headline}
-          <span className="text-text-tertiary">
-            · {profile.location.split(',')[0]}, CO
-          </span>
-        </p>
-
-        <h1 className="mt-6 font-serif text-[clamp(60px,16vw,184px)] font-light leading-[0.94] tracking-[-0.035em]">
-          <span
-            className="await-ready block animate-line-mask pb-[0.04em]"
-            style={d(180)}
-          >
-            <span
-              className="await-ready inline-block animate-line-up"
-              style={d(180)}
+      <div className="my-auto grid gap-12 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
+        <div>
+          {edu && (
+            <p
+              className="label await-ready flex animate-fade-up items-center gap-2 text-accent before:h-px before:w-5 before:bg-accent"
+              style={d(100)}
             >
-              De {/* "Figma" seleccionado como en la herramienta de diseño */}
-              <span className="group/figma relative inline-block">
-                <em className="italic text-accent">Figma</em>
-                <span
-                  aria-hidden
-                  className="await-ready pointer-events-none absolute -inset-x-[0.06em] -bottom-[0.2em] top-[0.16em] animate-frame-in border border-accent/60 transition-colors duration-300 group-hover/figma:border-accent"
-                  style={d(1150)}
-                >
-                  {handles.map((pos, i) => (
-                    <span
-                      key={pos}
-                      className={`await-ready absolute h-[7px] w-[7px] animate-handle-in border border-accent bg-background transition-transform duration-300 group-hover/figma:scale-125 ${pos}`}
-                      style={d(1250 + i * 60)}
-                    />
-                  ))}
-                  <span
-                    className="await-ready absolute -top-[22px] left-[-1px] hidden animate-fade-in whitespace-nowrap bg-accent px-1.5 py-[3px] font-mono text-[9px] font-medium not-italic leading-none tracking-[0.04em] text-background md:block"
-                    style={d(1450)}
-                  >
-                    Frame · Hero
-                  </span>
-                  <span
-                    className="await-ready absolute -bottom-[22px] right-[-1px] hidden animate-fade-in whitespace-nowrap bg-accent px-1.5 py-[3px] font-mono text-[9px] font-medium not-italic leading-none tracking-[0.04em] text-background md:block"
-                    style={d(1500)}
-                  >
-                    1440 × 900
-                  </span>
-                </span>
+              {edu.degree}
+            </p>
+          )}
+
+          <h1 className="mt-5 font-serif text-[clamp(44px,6.4vw,84px)] font-light leading-[1.02] tracking-[-0.02em]">
+            <span className="block overflow-hidden pb-[0.06em]">
+              <span
+                className="await-ready inline-block animate-line-up"
+                style={d(180)}
+              >
+                {profile.name}
               </span>
             </span>
-          </span>
-          <span
-            className="await-ready block animate-line-mask pb-[0.06em] md:pl-[11%]"
-            style={d(300)}
-          >
-            <span
-              className="await-ready inline-block animate-line-up"
-              style={d(300)}
-            >
-              a producción<span className="text-accent">.</span>
-            </span>
-          </span>
-        </h1>
+          </h1>
 
-        <div className="mt-12 grid gap-10 md:mt-16 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
-          <div>
+          {current && (
             <p
-              className="await-ready max-w-[460px] animate-fade-up text-[14px] font-light leading-[1.7] text-text-secondary md:text-[15px]"
-              style={d(560)}
+              className="await-ready mt-4 animate-fade-up text-[17px] font-light text-text-secondary md:text-[20px]"
+              style={d(320)}
             >
-              <span className="text-text-primary">{profile.name}</span> —{' '}
-              {profile.intro}
+              Desarrollador frontend en{' '}
+              {current.url ? (
+                <a
+                  href={current.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link text-text-primary"
+                >
+                  <span className="link-draw pb-0.5">{current.company}</span>
+                  <span
+                    aria-hidden
+                    className="ml-1 inline-block text-[0.8em] text-accent transition-transform duration-500 ease-spring group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                  >
+                    ↗
+                  </span>
+                </a>
+              ) : (
+                <span className="text-text-primary">{current.company}</span>
+              )}
             </p>
+          )}
 
-            <div
-              className="await-ready mt-8 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4"
-              style={d(680)}
-            >
-              <Link href="#proyectos" className="pill group">
-                Ver proyectos
-                <span
-                  aria-hidden
-                  className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
-                >
-                  ↓
-                </span>
-              </Link>
-              <a
-                href={cv.contact.cv.value}
-                download
-                className="group font-mono text-[11px] tracking-[0.06em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
-              >
-                <span className="link-draw pb-0.5">Descargar CV</span>
-                <span
-                  aria-hidden
-                  className="ml-1.5 inline-block text-accent transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
-                >
-                  ↓
-                </span>
-              </a>
-            </div>
-          </div>
+          <p
+            className="await-ready mt-5 flex animate-fade-up flex-wrap gap-x-2 gap-y-1 font-mono text-[11px] tracking-[0.06em] text-text-tertiary"
+            style={d(420)}
+          >
+            {profile.stack.map((tech, i) => (
+              <React.Fragment key={tech}>
+                {i > 0 && <span aria-hidden>·</span>}
+                <span className="whitespace-nowrap">{tech}</span>
+              </React.Fragment>
+            ))}
+          </p>
 
           <div
-            className="await-ready flex animate-fade-up gap-8 md:gap-10"
-            style={d(800)}
+            className="await-ready mt-9 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4"
+            style={d(540)}
           >
-            {stats.map((st, i) => (
-              <div key={st.label} className="group text-left md:text-center">
-                <p className="font-serif text-[clamp(30px,3.4vw,40px)] font-light leading-none text-text-primary">
-                  <CountUp value={st.value} delay={i * 120} />
-                  <span className="inline-block text-accent transition-transform duration-500 ease-spring group-hover:-translate-y-1 group-hover:rotate-90">
-                    +
-                  </span>
-                </p>
-                <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
-                  {st.label}
-                </p>
-              </div>
-            ))}
+            <Link href="#proyectos" className="pill group">
+              Ver proyectos
+              <span
+                aria-hidden
+                className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+              >
+                ↓
+              </span>
+            </Link>
+            <a
+              href={cv.contact.cv.value}
+              download
+              className="group font-mono text-[11px] tracking-[0.06em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
+            >
+              <span className="link-draw pb-0.5">Descargar CV</span>
+              <span
+                aria-hidden
+                className="ml-1.5 inline-block text-accent transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+              >
+                ↓
+              </span>
+            </a>
           </div>
+        </div>
+
+        <div
+          className="await-ready flex animate-fade-up gap-8 md:gap-10"
+          style={d(660)}
+        >
+          {stats.map((st, i) => (
+            <div key={st.label} className="group text-left md:text-center">
+              <p className="font-serif text-[clamp(30px,3.4vw,40px)] font-light leading-none text-text-primary">
+                <CountUp value={st.value} delay={i * 120} />
+                <span className="inline-block text-accent transition-transform duration-500 ease-spring group-hover:-translate-y-1 group-hover:rotate-90">
+                  +
+                </span>
+              </p>
+              <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
+                {st.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Franja de datos */}
       <div
         className="await-ready mt-14 flex animate-fade-up flex-col items-start gap-x-3 gap-y-2 border-t border-line pt-6 font-mono text-[10px] tracking-[0.04em] text-text-secondary md:flex-row md:flex-wrap md:items-center md:justify-between md:text-[11px]"
-        style={d(880)}
+        style={d(760)}
       >
         {strip.map((item) => (
           <React.Fragment key={item}>

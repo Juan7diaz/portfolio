@@ -10,7 +10,14 @@
     "bannerLink": "/img/banner.webp",
     "avatarLink": "/img/profile.jpeg",
     "openToWork": true,
-    "intro": "Desarrollador frontend en Santa Marta, Colombia. Diseño la interfaz, la construyo con React y Node.js y la acompaño hasta que está en producción."
+    "intro": "Desarrollador frontend en Santa Marta, Colombia. Diseño la interfaz, la construyo con React y Node.js y la acompaño hasta que está en producción.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "Spring Boot"
+    ]
   },
   "education": [
     {
