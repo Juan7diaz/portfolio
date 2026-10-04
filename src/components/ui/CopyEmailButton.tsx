@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { copyToClipboard, haptic, toast } from '@/lib/toast';
+import { play } from '@/lib/sound';
 
 // Copia el correo: el texto cambia a "Copiado ✓" y aparece un aviso
 function CopyEmailButton({ email }: { email: string }) {
@@ -16,6 +17,7 @@ function CopyEmailButton({ email }: { email: string }) {
       return;
     }
     haptic();
+    play('success');
     setCopied(true);
     toast('Correo copiado');
     window.clearTimeout(timer.current);
@@ -26,6 +28,7 @@ function CopyEmailButton({ email }: { email: string }) {
     <button
       type="button"
       onClick={handleCopy}
+      data-sound="custom"
       aria-label={`Copiar el correo ${email}`}
       className={`pill relative overflow-hidden ${copied ? '!border-accent !bg-accent-soft !text-text-primary' : ''}`}
     >

@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import cv from '@/data/cv.json';
+import { play } from '@/lib/sound';
 import ThemeToggle from './ThemeToggle';
+import SoundToggle from './SoundToggle';
 
 const links = [
   { id: 'experiencia', label: 'Exp.' },
@@ -96,6 +98,7 @@ function Navbar() {
   useEffect(() => () => window.clearTimeout(peekTimer.current), []);
 
   const onTab = () => {
+    play('pop');
     setPeek(true);
     window.clearTimeout(peekTimer.current);
     peekTimer.current = window.setTimeout(() => setPeek(false), 4000);
@@ -111,6 +114,7 @@ function Navbar() {
       <button
         type="button"
         onClick={onTab}
+        data-sound="custom"
         className="nav-tab glass group"
         aria-label="Mostrar navegación"
         tabIndex={collapsed ? 0 : -1}
@@ -171,6 +175,7 @@ function Navbar() {
             ))}
           </ul>
 
+          <SoundToggle />
           <ThemeToggle />
 
           {cv.profile.openToWork && (

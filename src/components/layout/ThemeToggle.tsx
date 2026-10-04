@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
+import { play } from '@/lib/sound';
 
 type Theme = 'dark' | 'light';
 
@@ -43,6 +44,7 @@ function ThemeToggle() {
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const next: Theme = theme === 'light' ? 'dark' : 'light';
+    play(next === 'light' ? 'themeLight' : 'themeDark');
     const doc = document as DocWithVT;
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -86,6 +88,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
+      data-sound="custom"
       aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
       title={isDark ? 'Modo claro' : 'Modo oscuro'}
       className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-text-secondary transition-[color,background-color,transform] duration-300 hover:bg-text-primary/[0.07] hover:text-text-primary active:scale-90"

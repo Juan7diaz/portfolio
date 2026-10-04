@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { play } from '@/lib/sound';
 
 const arrowBtn =
   'absolute inset-y-0 z-10 my-auto flex h-11 w-11 items-center justify-center rounded-full border border-text-primary/10 glass text-base text-text-primary transition-[opacity,transform,background-color,color] duration-500 ease-out-quint hover:bg-text-primary hover:text-background active:scale-90 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:focus-visible:opacity-100';
@@ -19,6 +20,16 @@ function Carousel({
   const [loaded, setLoaded] = useState<Record<number, boolean>>({});
   const start = useRef<{ x: number; y: number } | null>(null);
   const count = imgs.length;
+
+  // Deslizamiento suave al cambiar de imagen (no en el montaje)
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    play('swipe', index);
+  }, [index]);
 
   const go = useCallback(
     (dir: number) => setIndex((i) => (i + dir + count) % count),
@@ -109,6 +120,7 @@ function Carousel({
             <button
               type="button"
               onClick={() => go(-1)}
+              data-sound="custom"
               aria-label="Imagen anterior"
               className={`${arrowBtn} left-4 md:-translate-x-2`}
             >
@@ -117,6 +129,7 @@ function Carousel({
             <button
               type="button"
               onClick={() => go(1)}
+              data-sound="custom"
               aria-label="Imagen siguiente"
               className={`${arrowBtn} right-4 md:translate-x-2`}
             >
@@ -142,6 +155,7 @@ function Carousel({
                 key={img}
                 type="button"
                 onClick={() => setIndex(i)}
+                data-sound="custom"
                 aria-label={`Ver imagen ${i + 1}`}
                 aria-current={i === index}
                 className="group/seg flex h-5 flex-1 items-center"

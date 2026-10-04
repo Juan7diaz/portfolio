@@ -9,6 +9,7 @@ import React, {
   useState,
 } from 'react';
 import { seeded } from '@/lib/ready';
+import { playStep } from '@/lib/sound';
 
 export interface WheelProject {
   slug: string;
@@ -50,6 +51,16 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
     }, SWAP_MS);
     return () => window.clearTimeout(t);
   }, [index, shown]);
+
+  // Nota de la escala según el proyecto al que se llega (no en el montaje)
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    playStep(index);
+  }, [index]);
 
   const go = useCallback((delta: number) => setStep((s) => s + delta), []);
 
@@ -177,6 +188,8 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
                   <button
                     type="button"
                     onClick={() => goTo(i)}
+                    data-sound="custom"
+                    data-sound-hover
                     aria-label={`Ver ${proj.name}`}
                     aria-pressed={isActive}
                     className="group/dot absolute flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
@@ -315,6 +328,8 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
               key={b.d}
               type="button"
               onClick={() => go(b.d)}
+              data-sound="custom"
+              data-sound-hover
               aria-label={b.label}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-base text-text-primary transition-[background-color,color,transform] duration-300 hover:bg-text-primary hover:text-background active:scale-90"
             >

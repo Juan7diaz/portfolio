@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Contact from '@/components/layout/Contact';
 import Preloader from '@/components/layout/Preloader';
 import Cursor from '@/components/layout/Cursor';
+import SoundManager from '@/components/layout/SoundManager';
 import Toaster from '@/components/ui/Toaster';
 import cv from '@/data/cv.json';
 
@@ -98,6 +99,7 @@ export default function AppLayout({
         <main id="contenido">{children}</main>
         <Contact />
         <Cursor />
+        <SoundManager />
         <Toaster />
         <div aria-hidden className="grain" />
         <SpeedInsights />

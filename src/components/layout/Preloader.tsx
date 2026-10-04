@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import cv from '@/data/cv.json';
+import { play } from '@/lib/sound';
 
 const KEY = 'jdg-preloaded';
 const HOLD = 1900; // ms hasta que la barra termina
@@ -23,6 +24,10 @@ function Preloader() {
     const { overflow } = document.body.style;
     document.body.style.overflow = 'hidden';
 
+    // Sonido solo si el navegador ya permite audio (antes de interactuar
+    // suele estar bloqueado y simplemente no suena)
+    const swell = window.setTimeout(() => play('loadStart'), 500);
+
     // Contador sincronizado con la barra (misma curva ease-in-out)
     const start = performance.now() + 500;
     let raf = 0;
@@ -36,6 +41,7 @@ function Preloader() {
 
     const exit = window.setTimeout(() => {
       setPhase('exit');
+      play('loadDone');
       html.setAttribute('data-ready', '');
       document.body.style.overflow = overflow;
       try {
@@ -48,6 +54,7 @@ function Preloader() {
 
     return () => {
       cancelAnimationFrame(raf);
+      window.clearTimeout(swell);
       window.clearTimeout(exit);
       window.clearTimeout(done);
       document.body.style.overflow = overflow;
