@@ -9,7 +9,8 @@
     "location": "Santa Marta, Magdalena, Colombia",
     "bannerLink": "/img/banner.webp",
     "avatarLink": "/img/profile.jpeg",
-    "openToWork": true
+    "openToWork": true,
+    "intro": "Ingeniero de sistemas y desarrollador FullStack desde Santa Marta, Colombia. Especializado en React, Node.js y diseño de interfaces."
   },
   "education": [
     {
@@ -41,6 +42,68 @@
   "about": {
     "summary": "Estudiante de último semestre de ingeniería de sistemas con experiencia práctica en desarrollo FullStack. Especializado en React y Node.js, participando en proyectos universitarios innovadores, demostrando habilidades en resolución de problemas y trabajo en equipo. \n Comprometido con el aprendizaje continuo, actualmente profundizando en Spring Boot. Busco oportunidades para aplicar mi experiencia técnica y creatividad en soluciones tecnológicas impactantes."
   },
+  "experience": [
+    {
+      "type": "work",
+      "role": "Auxiliar de Desarrollo",
+      "company": "Smitco",
+      "url": "https://smitco.com.co",
+      "startDate": "2025",
+      "endDate": "Presente",
+      "description": "Desarrollo frontend y backend, diseño de interfaces, soporte técnico y mantenimiento de sistemas. Rol integral abarcando todo el ciclo de desarrollo de producto."
+    },
+    {
+      "type": "work",
+      "role": "Practicante de Sistemas",
+      "company": "Smitco",
+      "url": "https://smitco.com.co",
+      "startDate": "2024",
+      "endDate": "2025",
+      "description": "Prácticas profesionales en desarrollo web, participando en proyectos internos de la empresa y adquiriendo experiencia real en entornos de producción."
+    },
+    {
+      "type": "education",
+      "role": "Ingeniero de Sistemas",
+      "company": "Universidad del Magdalena",
+      "url": "",
+      "startDate": "2020",
+      "endDate": "2024",
+      "description": "Formación en ingeniería de software, bases de datos y arquitectura de sistemas. Proyectos universitarios FullStack con React, Spring Boot y Node.js."
+    }
+  ],
+  "skillGroups": [
+    {
+      "title": "Frontend",
+      "items": [
+        "React / Next.js",
+        "TypeScript",
+        "JavaScript",
+        "HTML / CSS",
+        "Chakra-UI / MUI",
+        "React Query"
+      ]
+    },
+    {
+      "title": "Backend",
+      "items": [
+        "Node.js / Express",
+        "Spring Boot",
+        "PostgreSQL",
+        "REST APIs",
+        "Microservicios"
+      ]
+    },
+    {
+      "title": "Tools",
+      "items": [
+        "Git / GitHub",
+        "Azure DevOps",
+        "Figma",
+        "Bash",
+        "Testcontainers"
+      ]
+    }
+  ],
   "certification": [
     {
       "logoSrc": "/img/udemy.jpeg",

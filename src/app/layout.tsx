@@ -1,17 +1,33 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Cormorant_Garamond, JetBrains_Mono, Outfit } from 'next/font/google';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
+import Contact from '@/components/layout/Contact';
+import Preloader from '@/components/layout/Preloader';
+import Cursor from '@/components/layout/Cursor';
 import Toaster from '@/components/ui/Toaster';
 import cv from '@/data/cv.json';
 
-const inter = Inter({
+const serif = Cormorant_Garamond({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  style: ['normal', 'italic'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-serif',
+});
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  display: 'swap',
+  variable: '--font-mono',
+});
+const sans = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
+  variable: '--font-sans',
 });
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -35,9 +51,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#050505',
   colorScheme: 'dark',
 };
+
+// Se ejecuta antes del primer pintado: si ya se vio el preloader en esta
+// sesión (o se prefiere menos movimiento) se omite y el hero arranca directo.
+const bootScript = `(function(){var d=document.documentElement;try{if(sessionStorage.getItem('jdg-preloaded')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-preloaded','');d.setAttribute('data-ready','');}}catch(e){d.setAttribute('data-preloaded','');d.setAttribute('data-ready','');}})();`;
 
 export default function AppLayout({
   children,
@@ -45,25 +65,36 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={inter.variable}>
-      <body className="min-h-screen font-sans">
+    <html
+      lang="es"
+      className={`${serif.variable} ${mono.variable} ${sans.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        {/* eslint-disable-next-line react/no-danger */}
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+      </head>
+      <body className="min-h-screen">
         <noscript>
           <style>
             {
-              '.reveal{opacity:1!important;transform:none!important;filter:none!important}'
+              '.preloader{display:none!important}.await-ready{animation-play-state:running!important}.reveal{opacity:1!important;transform:none!important}'
             }
           </style>
         </noscript>
+        <Preloader />
         <a
           href="#contenido"
-          className="fixed left-4 top-3 z-[60] -translate-y-20 rounded-full bg-accent-strong px-4 py-2 text-sm text-white transition-transform focus:translate-y-0"
+          className="fixed left-4 top-4 z-[150] -translate-y-24 rounded-full bg-accent px-4 py-2 font-mono text-[11px] text-background transition-transform focus:translate-y-0"
         >
           Saltar al contenido
         </a>
         <Navbar />
         <main id="contenido">{children}</main>
-        <Footer />
+        <Contact />
+        <Cursor />
         <Toaster />
+        <div aria-hidden className="grain" />
         <SpeedInsights />
         <Analytics />
       </body>

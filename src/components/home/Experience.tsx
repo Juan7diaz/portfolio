@@ -1,0 +1,62 @@
+import cv from '@/data/cv.json';
+import Section from '@/components/common/Section';
+import Reveal from '@/components/ui/Reveal';
+
+function Experience() {
+  return (
+    <Section id="experiencia" number="01" title="Experiencia">
+      <ol className="border-t border-line">
+        {cv.experience.map((e, i) => (
+          <Reveal
+            as="li"
+            key={`${e.role}-${e.startDate}`}
+            delay={(i + 1) * 80}
+            className="group relative grid gap-1.5 border-b border-line py-7 transition-[padding] duration-500 ease-out-quint md:grid-cols-[180px_1fr] md:gap-8 md:hover:pl-3"
+          >
+            {/* Barra de acento que crece al hover */}
+            <span
+              aria-hidden
+              className="absolute inset-y-7 left-0 hidden w-px origin-top scale-y-0 bg-accent transition-transform duration-500 ease-out-quint group-hover:scale-y-100 md:block"
+            />
+            <p className="pt-1 font-mono text-[11px] tracking-[0.04em] text-text-tertiary transition-colors duration-300 group-hover:text-text-secondary">
+              {e.startDate} — {e.endDate}
+            </p>
+            <div>
+              <h3 className="mb-1 font-serif text-[22px] font-normal leading-tight md:text-[24px]">
+                {e.role}
+              </h3>
+              <p className="mb-2.5 font-mono text-[11px] uppercase tracking-[0.06em] text-accent">
+                {e.url ? (
+                  <a
+                    href={e.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link inline-flex items-center gap-1.5"
+                  >
+                    <span className="link-draw">{e.company}</span>
+                    <span className="normal-case text-text-tertiary">
+                      · {e.url.replace(/^https?:\/\//, '')}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-500 ease-spring group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                    >
+                      ↗
+                    </span>
+                  </a>
+                ) : (
+                  e.company
+                )}
+              </p>
+              <p className="max-w-2xl text-[13.5px] font-light leading-[1.7] text-text-secondary">
+                {e.description}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </ol>
+    </Section>
+  );
+}
+
+export default Experience;

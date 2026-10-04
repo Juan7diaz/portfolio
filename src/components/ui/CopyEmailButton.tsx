@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { FiCheck, FiCopy } from 'react-icons/fi';
 import { copyToClipboard, haptic, toast } from '@/lib/toast';
-import { btnSecondary } from '@/lib/styles';
 
-// Copia el correo con un cambio de icono animado + notificación
+// Copia el correo: el texto cambia a "Copiado ✓" y aparece un aviso
 function CopyEmailButton({ email }: { email: string }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<number>();
@@ -13,14 +11,13 @@ function CopyEmailButton({ email }: { email: string }) {
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
   const handleCopy = async () => {
-    const ok = await copyToClipboard(email);
-    if (!ok) {
+    if (!(await copyToClipboard(email))) {
       window.location.href = `mailto:${email}`;
       return;
     }
     haptic();
     setCopied(true);
-    toast('Correo copiado al portapapeles');
+    toast('Correo copiado');
     window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setCopied(false), 2000);
   };
@@ -29,28 +26,26 @@ function CopyEmailButton({ email }: { email: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className={`${btnSecondary} min-w-[176px]`}
       aria-label={`Copiar el correo ${email}`}
+      className={`pill relative overflow-hidden ${copied ? '!border-accent !bg-accent-soft !text-text-primary' : ''}`}
     >
-      <span className="relative h-4 w-4">
-        <FiCopy
-          aria-hidden
-          className={`absolute inset-0 transition-all duration-300 ease-spring ${
-            copied ? 'rotate-[-30deg] scale-50 opacity-0' : 'opacity-100'
+      {/* Ambas etiquetas comparten espacio para que el botón no cambie de ancho */}
+      <span className="grid">
+        <span
+          className={`col-start-1 row-start-1 transition-[opacity,transform] duration-300 ease-out-quint ${
+            copied ? '-translate-y-3 opacity-0' : ''
           }`}
-        />
-        <FiCheck
-          aria-hidden
-          strokeWidth={3}
-          className={`absolute inset-0 text-success transition-all duration-500 ease-spring ${
-            copied
-              ? 'scale-100 opacity-100'
-              : 'rotate-[30deg] scale-50 opacity-0'
+        >
+          Copiar correo
+        </span>
+        <span
+          aria-hidden={!copied}
+          className={`col-start-1 row-start-1 transition-[opacity,transform] duration-300 ease-out-quint ${
+            copied ? '' : 'translate-y-3 opacity-0'
           }`}
-        />
-      </span>
-      <span className="transition-colors duration-300">
-        {copied ? 'Copiado' : 'Copiar correo'}
+        >
+          Copiado <span className="text-accent">✓</span>
+        </span>
       </span>
     </button>
   );

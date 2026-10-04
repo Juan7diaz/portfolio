@@ -1,41 +1,44 @@
-import React from 'react';
 import cv from '@/data/cv.json';
 import Section from '@/components/common/Section';
 import Reveal from '@/components/ui/Reveal';
-import MatchIcon, {
-  brandColors,
-  MatcherKey,
-} from '@/components/common/MatchIcon';
+import CertScroller, { Cert } from './CertScroller';
 
 function Skills() {
+  const certs: Cert[] = cv.certification.map((c) => ({
+    title: c.title.replace(/\s*\(.*\)\s*/, ' ').trim(),
+    issuer: c.issuer,
+    year: c.issueDate.match(/\d{4}/)?.[0] ?? c.issueDate,
+    url: c.credentialUrl,
+  }));
+
   return (
-    <Section
-      id="habilidades"
-      eyebrow="Habilidades"
-      title="Mi caja de herramientas."
-      description="Las tecnologías con las que diseño, construyo y despliego productos todos los días."
-    >
-      <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-        {cv.skill.map((skill, i) => {
-          const brand = brandColors[skill.name as MatcherKey] ?? '#f5f5f7';
-          return (
-            <Reveal as="li" key={skill.name} delay={(i % 6) * 50}>
-              <div
-                className="group flex aspect-square cursor-default flex-col items-center justify-center gap-3 rounded-3xl border border-white/[0.06] bg-surface transition-[background-color,border-color,transform] duration-500 ease-out-expo hover:border-white/[0.12] hover:bg-surface-raised active:scale-95"
-                style={{ '--brand': brand } as React.CSSProperties}
-              >
-                <MatchIcon
-                  name={skill.name as MatcherKey}
-                  className="h-8 w-8 text-text-secondary transition-[color,transform,filter] duration-500 ease-spring group-hover:-translate-y-1 group-hover:scale-110 group-hover:text-[color:var(--brand)] group-hover:drop-shadow-[0_6px_18px_var(--brand)]"
-                />
-                <span className="px-2 text-center text-xs font-medium text-text-tertiary transition-colors duration-500 group-hover:text-text-primary">
-                  {skill.label}
-                </span>
-              </div>
-            </Reveal>
-          );
-        })}
-      </ul>
+    <Section id="skills" number="03" title="Skills & Certs">
+      <div className="grid gap-3 md:grid-cols-3">
+        {cv.skillGroups.map((g, i) => (
+          <Reveal key={g.title} delay={(i + 1) * 80}>
+            <div className="group relative h-full border border-line bg-surface p-6 transition-[border-color,transform] duration-300 hover:-translate-y-px hover:border-line-strong">
+              <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out-quint group-hover:scale-x-100" />
+              <h3 className="mb-3.5 border-b border-line pb-2.5 font-mono text-[9px] uppercase tracking-[0.14em] text-accent">
+                {g.title}
+              </h3>
+              <ul className="flex flex-col gap-1.5">
+                {g.items.map((item) => (
+                  <li
+                    key={item}
+                    className="group/item flex cursor-default items-center font-mono text-[12px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
+                  >
+                    <span className="mr-0 h-px w-0 bg-accent transition-all duration-300 ease-out-quint group-hover/item:mr-2 group-hover/item:w-2.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal delay={120}>
+        <CertScroller certs={certs} />
+      </Reveal>
     </Section>
   );
 }

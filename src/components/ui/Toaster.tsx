@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { FiCheck } from 'react-icons/fi';
 import { TOAST_EVENT, ToastDetail } from '@/lib/toast';
 
 interface ToastState {
@@ -19,7 +18,6 @@ function Toaster() {
       timers.current.forEach((t) => window.clearTimeout(t));
       timers.current = [];
     };
-
     const onToast = (e: Event) => {
       const { message } = (e as CustomEvent<ToastDetail>).detail;
       clear();
@@ -32,7 +30,6 @@ function Toaster() {
         window.setTimeout(() => setToast(null), 2600),
       );
     };
-
     window.addEventListener(TOAST_EVENT, onToast);
     return () => {
       clear();
@@ -45,18 +42,16 @@ function Toaster() {
       {toast && (
         <div
           key={toast.id}
-          className={`glass fixed bottom-8 left-1/2 z-[100] flex items-center gap-2.5 rounded-full border border-hairline py-2.5 pl-2.5 pr-5 text-sm font-medium text-text-primary shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] transition-[opacity,transform,filter] duration-300 ease-apple ${
-            toast.leaving ? 'opacity-0 blur-[4px]' : 'animate-toast-in'
+          className={`glass fixed bottom-8 left-1/2 z-[200] flex items-center gap-2.5 rounded-full border border-white/[0.08] px-5 py-2.5 font-mono text-[11px] tracking-[0.06em] text-text-primary shadow-[0_20px_50px_-15px_rgba(0,0,0,0.9)] transition-[opacity,transform] duration-300 ease-smooth ${
+            toast.leaving ? 'opacity-0' : 'animate-toast-in'
           }`}
           style={{
             transform: toast.leaving
-              ? 'translate(-50%, 10px) scale(0.94)'
+              ? 'translate(-50%, 10px) scale(0.96)'
               : 'translate(-50%, 0)',
           }}
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-success text-black">
-            <FiCheck size={14} strokeWidth={3} />
-          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           {toast.message}
         </div>
       )}

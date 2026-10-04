@@ -4,43 +4,41 @@ import { useEffect, useState } from 'react';
 
 const formatter = new Intl.DateTimeFormat('es-CO', {
   timeZone: 'America/Bogota',
-  hour: 'numeric',
+  hour: '2-digit',
   minute: '2-digit',
-  hour12: true,
+  second: '2-digit',
+  hour12: false,
 });
 
-// Hora local en vivo (se renderiza en cliente para evitar desajustes de hidratación)
-function LocalTime() {
+// Hora de Colombia en vivo (HH:MM:SS). Se pinta en cliente para evitar
+// desajustes de hidratación.
+function LocalTime({ className = '' }: { className?: string }) {
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
     setNow(new Date());
-    const id = window.setInterval(() => setNow(new Date()), 15_000);
-    return () => window.clearInterval(id);
+    // Alinea el tic con el cambio real de segundo
+    let interval = 0;
+    const timeout = window.setTimeout(
+      () => {
+        setNow(new Date());
+        interval = window.setInterval(() => setNow(new Date()), 1000);
+      },
+      1000 - (Date.now() % 1000),
+    );
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearInterval(interval);
+    };
   }, []);
 
-  if (!now) {
-    return (
-      <span className="inline-block h-[1em] w-24 animate-pulse rounded-md bg-white/10 align-middle" />
-    );
-  }
-
-  const parts = formatter.formatToParts(now);
-  const hour = parts.find((p) => p.type === 'hour')?.value;
-  const minute = parts.find((p) => p.type === 'minute')?.value;
-  const period = parts
-    .filter((p) => p.type === 'dayPeriod')
-    .map((p) => p.value)
-    .join('');
-
   return (
-    <time dateTime={now.toISOString()} className="tabular-nums">
-      {hour}
-      <span className="animate-pulse">:</span>
-      {minute}
-      <span className="ml-1.5 text-[0.4em] font-medium tracking-normal text-text-tertiary">
-        {period}
-      </span>
+    <time
+      dateTime={now?.toISOString()}
+      className={`tabular-nums ${className}`}
+      suppressHydrationWarning
+    >
+      {now ? formatter.format(now) : '--:--:--'}
     </time>
   );
 }

@@ -23,7 +23,7 @@ export function generateMetadata({ params }: Params): Metadata {
   );
   return {
     title: data.name,
-    description: data.resumen,
+    description: data.summary ?? data.resumen,
     openGraph: { images: [data.coverImage] },
   };
 }
@@ -45,7 +45,7 @@ function ProjectPage({ params }: Params) {
       <Reveal delay={360}>
         <Carousel imgs={data.carouselImages} alt={data.name} />
       </Reveal>
-      <article className="mx-auto max-w-[692px]">
+      <article className="mx-auto max-w-[720px]">
         <ReactMarkdown components={MarkdownComponents as any}>
           {content}
         </ReactMarkdown>

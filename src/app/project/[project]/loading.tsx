@@ -1,24 +1,17 @@
-// Indicador de actividad al estilo iOS: 8 barras que se desvanecen en secuencia
+// Barra fina en acento, igual que el preloader
 function Loading() {
   return (
     <div
       role="status"
       aria-label="Cargando proyecto"
-      className="flex min-h-screen items-center justify-center"
+      className="flex min-h-screen flex-col items-center justify-center gap-4"
     >
-      <div className="relative h-8 w-8">
-        {Array.from({ length: 8 }, (_, i) => (
-          <span
-            key={i}
-            className="absolute left-1/2 top-0 h-[30%] w-[9%] -translate-x-1/2 animate-spinner-fade rounded-full bg-text-secondary"
-            style={{
-              transform: `translateX(-50%) rotate(${i * 45}deg)`,
-              transformOrigin: '50% 166%',
-              animationDelay: `${-1 + i * 0.125}s`,
-            }}
-          />
-        ))}
+      <div className="relative h-px w-[180px] overflow-hidden bg-line-strong">
+        <span className="absolute inset-0 origin-left animate-[load-bar_1.4s_ease-in-out_infinite] bg-accent" />
       </div>
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary">
+        Cargando
+      </span>
     </div>
   );
 }

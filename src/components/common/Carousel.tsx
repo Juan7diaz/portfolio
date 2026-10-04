@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import React, { useCallback, useRef, useState } from 'react';
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
-const arrow =
-  'glass absolute inset-y-0 z-10 my-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-text-primary shadow-lg transition-all duration-500 ease-out-expo hover:scale-105 hover:bg-white/20 active:scale-90 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:focus-visible:opacity-100';
+const arrowBtn =
+  'absolute inset-y-0 z-10 my-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/10 glass text-base text-text-primary transition-[opacity,transform,background-color,color] duration-500 ease-out-quint hover:bg-text-primary hover:text-background active:scale-90 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:focus-visible:opacity-100';
+
+const pad = (n: number) => String(n).padStart(2, '0');
 
 function Carousel({
   imgs = [],
@@ -36,7 +37,6 @@ function Carousel({
     }
   };
 
-  // Gesto de deslizar en pantallas táctiles
   const onPointerDown = (e: React.PointerEvent) => {
     if (e.pointerType === 'mouse') return;
     start.current = { x: e.clientX, y: e.clientY };
@@ -68,36 +68,39 @@ function Carousel({
         onPointerCancel={() => {
           start.current = null;
         }}
-        className="group relative aspect-[16/10] touch-pan-y select-none overflow-hidden rounded-[28px] border border-white/[0.06] bg-surface"
+        className="group relative aspect-[16/10] touch-pan-y select-none overflow-hidden border border-line bg-surface"
       >
         {imgs.map((img, i) => (
           <div
             key={img}
             aria-hidden={i !== index}
-            className={`absolute inset-0 transition-[opacity,transform] duration-700 ease-out-expo ${
+            className={`absolute inset-0 transition-[opacity,transform] duration-700 ease-out-quint ${
               i === index
                 ? 'scale-100 opacity-100'
-                : 'pointer-events-none scale-[1.03] opacity-0'
+                : 'pointer-events-none scale-[1.02] opacity-0'
             }`}
           >
             <Image
               src={img}
               alt={`${alt} — captura ${i + 1} de ${count}`}
               fill
-              sizes="(min-width: 1024px) 976px, 100vw"
+              sizes="(min-width: 1200px) 1120px, 100vw"
               priority={i === 0}
               draggable={false}
               onLoad={() => setLoaded((l) => ({ ...l, [i]: true }))}
-              className={`object-contain transition-[filter,opacity] duration-700 ease-apple ${
-                loaded[i] ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
+              className={`object-contain transition-opacity duration-700 ${
+                loaded[i] ? 'opacity-100' : 'opacity-0'
               }`}
             />
           </div>
         ))}
 
         {!loaded[index] && (
-          <div aria-hidden className="absolute inset-0 overflow-hidden">
-            <div className="absolute inset-0 animate-shine bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-1/2 mx-auto h-px w-[180px] overflow-hidden bg-line-strong"
+          >
+            <span className="absolute inset-0 origin-left animate-[load-bar_1.4s_ease-in-out_infinite] bg-accent" />
           </div>
         )}
 
@@ -107,25 +110,33 @@ function Carousel({
               type="button"
               onClick={() => go(-1)}
               aria-label="Imagen anterior"
-              className={`${arrow} left-4 md:-translate-x-2`}
+              className={`${arrowBtn} left-4 md:-translate-x-2`}
             >
-              <IoChevronBack aria-hidden size={20} />
+              ←
             </button>
             <button
               type="button"
               onClick={() => go(1)}
               aria-label="Imagen siguiente"
-              className={`${arrow} right-4 md:translate-x-2`}
+              className={`${arrowBtn} right-4 md:translate-x-2`}
             >
-              <IoChevronForward aria-hidden size={20} />
+              →
             </button>
           </>
         )}
       </div>
 
       {count > 1 && (
-        <div className="mt-5 flex items-center justify-center gap-4">
-          <div className="flex items-center rounded-full bg-white/[0.06] px-2 py-1.5">
+        <div className="mt-5 flex items-center gap-5">
+          <span
+            className="font-mono text-[11px] tabular-nums tracking-[0.08em] text-text-tertiary"
+            aria-live="polite"
+          >
+            <span className="text-text-primary">{pad(index + 1)}</span> /{' '}
+            {pad(count)}
+          </span>
+          {/* Segmentos: el activo se llena en acento */}
+          <div className="flex flex-1 gap-1.5">
             {imgs.map((img, i) => (
               <button
                 key={img}
@@ -133,24 +144,18 @@ function Carousel({
                 onClick={() => setIndex(i)}
                 aria-label={`Ver imagen ${i + 1}`}
                 aria-current={i === index}
-                className="group/dot flex h-4 items-center px-[3px]"
+                className="group/seg flex h-5 flex-1 items-center"
               >
                 <span
-                  className={`block h-[7px] rounded-full transition-all duration-500 ease-out-expo ${
+                  className={`block h-px w-full transition-colors duration-500 ${
                     i === index
-                      ? 'w-6 bg-text-primary'
-                      : 'w-[7px] bg-white/30 group-hover/dot:bg-white/60'
+                      ? 'bg-accent'
+                      : 'bg-line-strong group-hover/seg:bg-text-tertiary'
                   }`}
                 />
               </button>
             ))}
           </div>
-          <p
-            className="min-w-[3.5rem] text-xs tabular-nums text-text-tertiary"
-            aria-live="polite"
-          >
-            {index + 1} / {count}
-          </p>
         </div>
       )}
     </section>

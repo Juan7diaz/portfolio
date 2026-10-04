@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { FiCheck, FiCopy } from 'react-icons/fi';
 import { copyToClipboard, haptic } from '@/lib/toast';
 
 function CodeCopyButton({ code }: { code: string }) {
@@ -19,14 +18,15 @@ function CodeCopyButton({ code }: { code: string }) {
       type="button"
       onClick={handleCopy}
       aria-label={copied ? 'Código copiado' : 'Copiar código'}
-      className="pressable flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs text-text-tertiary hover:bg-white/10 hover:text-text-primary"
+      className="rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-text-tertiary transition-colors duration-300 hover:bg-white/[0.06] hover:text-text-primary active:scale-95"
     >
       {copied ? (
-        <FiCheck aria-hidden className="text-success" />
+        <>
+          Copiado <span className="text-accent">✓</span>
+        </>
       ) : (
-        <FiCopy aria-hidden />
+        'Copiar'
       )}
-      {copied ? 'Copiado' : 'Copiar'}
     </button>
   );
 }
