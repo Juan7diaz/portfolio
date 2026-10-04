@@ -18,7 +18,7 @@ function CodeCopyButton({ code }: { code: string }) {
       type="button"
       onClick={handleCopy}
       aria-label={copied ? 'Código copiado' : 'Copiar código'}
-      className="rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-text-tertiary transition-colors duration-300 hover:bg-white/[0.06] hover:text-text-primary active:scale-95"
+      className="rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-text-tertiary transition-colors duration-300 hover:bg-text-primary/[0.06] hover:text-text-primary active:scale-95"
     >
       {copied ? (
         <>

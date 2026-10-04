@@ -51,13 +51,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#050505',
-  colorScheme: 'dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#050505' },
+    { media: '(prefers-color-scheme: light)', color: '#f4f1ec' },
+  ],
 };
 
-// Se ejecuta antes del primer pintado: si ya se vio el preloader en esta
-// sesión (o se prefiere menos movimiento) se omite y el hero arranca directo.
-const bootScript = `(function(){var d=document.documentElement;try{if(sessionStorage.getItem('jdg-preloaded')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-preloaded','');d.setAttribute('data-ready','');}}catch(e){d.setAttribute('data-preloaded','');d.setAttribute('data-ready','');}})();`;
+// Se ejecuta antes del primer pintado:
+// 1) aplica el tema guardado (o el del sistema) para evitar parpadeos;
+// 2) si ya se vio el preloader en esta sesión (o se prefiere menos
+//    movimiento) se omite y el hero arranca directo.
+const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('jdg-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}d.setAttribute('data-theme',t);}catch(e){}try{if(sessionStorage.getItem('jdg-preloaded')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-preloaded','');d.setAttribute('data-ready','');}}catch(e){d.setAttribute('data-preloaded','');d.setAttribute('data-ready','');}})();`;
 
 export default function AppLayout({
   children,
@@ -67,6 +71,7 @@ export default function AppLayout({
   return (
     <html
       lang="es"
+      data-theme="dark"
       className={`${serif.variable} ${mono.variable} ${sans.variable}`}
       suppressHydrationWarning
     >

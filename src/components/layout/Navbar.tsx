@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import cv from '@/data/cv.json';
+import ThemeToggle from './ThemeToggle';
 
 const links = [
   { id: 'experiencia', label: 'Exp.' },
@@ -126,7 +127,7 @@ function Navbar() {
       <nav aria-label="Principal" className="nav-pill glass">
         <Link
           href="/"
-          className="border-r border-white/[0.08] pr-3 font-serif text-[15px] font-semibold tracking-[0.02em] text-text-primary transition-colors duration-300 hover:text-accent"
+          className="border-r border-text-primary/[0.1] pr-3 font-serif text-[15px] font-semibold tracking-[0.02em] text-text-primary transition-colors duration-300 hover:text-accent"
           aria-label="Inicio"
         >
           {initials}
@@ -140,7 +141,7 @@ function Navbar() {
           >
             <span
               aria-hidden
-              className="absolute inset-y-0 rounded-full bg-white/[0.06] transition-all duration-500 ease-out-quint"
+              className="absolute inset-y-0 rounded-full bg-text-primary/[0.07] transition-all duration-500 ease-out-quint"
               style={{
                 left: pill.left,
                 width: pill.width,
@@ -169,6 +170,8 @@ function Navbar() {
               </li>
             ))}
           </ul>
+
+          <ThemeToggle />
 
           {cv.profile.openToWork && (
             <Link

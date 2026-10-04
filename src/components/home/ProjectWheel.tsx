@@ -119,7 +119,9 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
                   y1={50 + r1 * Math.sin(a)}
                   x2={50 + r2 * Math.cos(a)}
                   y2={50 + r2 * Math.sin(a)}
-                  stroke={long ? '#2a2a2a' : '#1a1a1a'}
+                  stroke={
+                    long ? 'rgb(var(--c-line-strong))' : 'rgb(var(--c-line))'
+                  }
                   strokeWidth={0.3}
                 />
               );
@@ -137,7 +139,7 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
               cy="50"
               r={R}
               fill="none"
-              stroke="#ff5a36"
+              stroke="rgb(var(--c-accent))"
               strokeWidth={0.7}
               strokeLinecap="round"
               strokeDasharray={CIRC}
@@ -186,7 +188,7 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
                     <span
                       className={`block rounded-full bg-accent transition-all duration-500 ease-out-quint ${
                         isActive
-                          ? 'h-4 w-4 opacity-100 shadow-[0_0_0_4px_rgba(255,90,54,0.2)]'
+                          ? 'h-4 w-4 opacity-100 shadow-[0_0_0_4px_rgb(var(--c-accent)/0.2)]'
                           : 'h-3 w-3 opacity-30 group-hover/dot:scale-125 group-hover/dot:opacity-80'
                       }`}
                     />

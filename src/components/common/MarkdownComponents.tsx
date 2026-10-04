@@ -35,7 +35,7 @@ function P({ children }: { children: React.ReactNode }) {
 
 function UL({ children }: { children: React.ReactNode }) {
   return (
-    <ul className="my-6 space-y-3 text-[15.5px] font-light leading-[1.75] text-text-secondary md:text-[16.5px]">
+    <ul className="my-6 space-y-3 text-[15.5px] font-light leading-[27px] text-text-secondary md:text-[16.5px] md:leading-[29px]">
       {children}
     </ul>
   );
@@ -51,7 +51,7 @@ function OL({ children }: { children: React.ReactNode }) {
 
 function LI({ children }: { children: React.ReactNode }) {
   return (
-    <li className="relative pl-6 before:absolute before:left-0 before:top-[14px] before:h-px before:w-3 before:bg-accent">
+    <li className="relative pl-6 before:absolute before:left-0 before:top-0 before:font-mono before:text-[12px] before:leading-[27px] before:text-accent before:content-['—'] md:before:leading-[29px]">
       {children}
     </li>
   );
@@ -124,7 +124,7 @@ function Code({
 
   if (isInline) {
     return (
-      <code className="bg-white/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-text-codeInLine">
+      <code className="bg-text-primary/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-text-codeInLine">
         {children}
       </code>
     );

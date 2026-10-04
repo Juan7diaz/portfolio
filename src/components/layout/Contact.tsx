@@ -27,7 +27,7 @@ function Contact() {
   return (
     <footer
       id="contacto"
-      className="border-t border-line bg-[#080808] px-5 py-24 text-center md:px-10 md:py-[120px]"
+      className="border-t border-line bg-surface-dark px-5 py-24 text-center md:px-10 md:py-[120px]"
     >
       <div className="mx-auto max-w-[720px]">
         <Reveal>
@@ -86,7 +86,7 @@ function Contact() {
           </div>
         </Reveal>
         <Reveal delay={320}>
-          <p className="mt-9 cursor-default font-serif text-[28px] italic text-[#333] transition-colors duration-700 hover:text-text-tertiary">
+          <p className="mt-9 cursor-default font-serif text-[28px] italic text-text-faint transition-colors duration-700 hover:text-text-tertiary">
             — {initials}
           </p>
           <p className="mt-6 font-mono text-[9px] tracking-[0.08em] text-text-tertiary">

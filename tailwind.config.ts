@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: ['selector', '[data-theme="dark"]'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,28 +15,30 @@ const config: Config = {
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
+      // Colores como variables RGB: cambian con el tema (ver globals.css)
       colors: {
-        background: '#050505',
+        background: 'rgb(var(--c-bg) / <alpha-value>)',
         surface: {
-          DEFAULT: '#0c0c0c',
-          dark: '#0a0a0a',
-          raised: '#111111',
+          DEFAULT: 'rgb(var(--c-surface) / <alpha-value>)',
+          dark: 'rgb(var(--c-surface-dark) / <alpha-value>)',
+          raised: 'rgb(var(--c-surface-raised) / <alpha-value>)',
         },
         line: {
-          DEFAULT: '#1a1a1a',
-          strong: '#2a2a2a',
+          DEFAULT: 'rgb(var(--c-line) / <alpha-value>)',
+          strong: 'rgb(var(--c-line-strong) / <alpha-value>)',
         },
         accent: {
-          DEFAULT: '#ff5a36',
-          soft: 'rgba(255, 90, 54, 0.12)',
+          DEFAULT: 'rgb(var(--c-accent) / <alpha-value>)',
+          soft: 'rgb(var(--c-accent) / 0.12)',
         },
         success: '#3ddc84',
         text: {
-          primary: '#f5f0eb',
-          secondary: '#9a958f',
-          tertiary: '#68645f',
-          codeInLine: '#ffb199',
-          code: '#cfc9c2',
+          primary: 'rgb(var(--c-text) / <alpha-value>)',
+          secondary: 'rgb(var(--c-text-2) / <alpha-value>)',
+          tertiary: 'rgb(var(--c-text-3) / <alpha-value>)',
+          faint: 'rgb(var(--c-text-4) / <alpha-value>)',
+          codeInLine: 'rgb(var(--c-code-inline) / <alpha-value>)',
+          code: 'rgb(var(--c-code) / <alpha-value>)',
         },
       },
       letterSpacing: {

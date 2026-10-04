@@ -42,7 +42,7 @@ function Toaster() {
       {toast && (
         <div
           key={toast.id}
-          className={`glass fixed bottom-8 left-1/2 z-[200] flex items-center gap-2.5 rounded-full border border-white/[0.08] px-5 py-2.5 font-mono text-[11px] tracking-[0.06em] text-text-primary shadow-[0_20px_50px_-15px_rgba(0,0,0,0.9)] transition-[opacity,transform] duration-300 ease-smooth ${
+          className={`glass fixed bottom-8 left-1/2 z-[200] flex items-center gap-2.5 rounded-full border border-text-primary/[0.08] px-5 py-2.5 font-mono text-[11px] tracking-[0.06em] text-text-primary shadow-[0_20px_50px_-15px_rgba(0,0,0,0.35)] transition-[opacity,transform] duration-300 ease-smooth ${
             toast.leaving ? 'opacity-0' : 'animate-toast-in'
           }`}
           style={{

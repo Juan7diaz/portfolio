@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useCallback, useRef, useState } from 'react';
 
 const arrowBtn =
-  'absolute inset-y-0 z-10 my-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/10 glass text-base text-text-primary transition-[opacity,transform,background-color,color] duration-500 ease-out-quint hover:bg-text-primary hover:text-background active:scale-90 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:focus-visible:opacity-100';
+  'absolute inset-y-0 z-10 my-auto flex h-11 w-11 items-center justify-center rounded-full border border-text-primary/10 glass text-base text-text-primary transition-[opacity,transform,background-color,color] duration-500 ease-out-quint hover:bg-text-primary hover:text-background active:scale-90 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:focus-visible:opacity-100';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 

@@ -3,9 +3,45 @@
 @tailwind utilities;
 
 @layer base {
+  /* Tema oscuro (por defecto) — valores RGB para poder aplicar opacidad */
   :root {
     color-scheme: dark;
     --nav-offset: 88px;
+    --c-bg: 5 5 5;
+    --c-surface: 12 12 12;
+    --c-surface-dark: 9 9 9;
+    --c-surface-raised: 17 17 17;
+    --c-line: 26 26 26;
+    --c-line-strong: 42 42 42;
+    --c-accent: 255 90 54;
+    --c-text: 245 240 235;
+    --c-text-2: 154 149 143;
+    --c-text-3: 104 100 95;
+    --c-text-4: 51 51 51;
+    --c-code-inline: 255 177 153;
+    --c-code: 207 201 194;
+    --shadow: 0.4;
+    --grain: 0.035;
+  }
+
+  /* Tema claro: papel cálido con el mismo acento */
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --c-bg: 244 241 236;
+    --c-surface: 250 248 245;
+    --c-surface-dark: 236 232 226;
+    --c-surface-raised: 255 255 255;
+    --c-line: 224 217 208;
+    --c-line-strong: 199 191 180;
+    --c-accent: 226 72 36;
+    --c-text: 23 21 19;
+    --c-text-2: 92 87 81;
+    --c-text-3: 126 120 112;
+    --c-text-4: 196 188 177;
+    --c-code-inline: 194 65 12;
+    --c-code: 58 54 49;
+    --shadow: 0.08;
+    --grain: 0.05;
   }
 
   html {
@@ -26,13 +62,13 @@
   }
 
   ::selection {
-    background: rgba(255, 90, 54, 0.85);
-    color: #050505;
+    background: rgb(var(--c-accent) / 0.85);
+    color: rgb(var(--c-bg));
   }
 
   /* Foco solo para teclado */
   :focus-visible {
-    outline: 1px solid #ff5a36;
+    outline: 1px solid rgb(var(--c-accent));
     outline-offset: 4px;
     border-radius: 2px;
   }
@@ -42,14 +78,14 @@
     height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #050505;
+    background: rgb(var(--c-bg));
   }
   ::-webkit-scrollbar-thumb {
-    background: #1f1f1f;
+    background: rgb(var(--c-line-strong));
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #2e2e2e;
+    background: rgb(var(--c-text-3));
   }
 }
 
@@ -59,7 +95,7 @@
   }
 
   .glass {
-    background: rgba(12, 12, 12, 0.72);
+    background: rgb(var(--c-surface) / 0.72);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
   }
@@ -129,7 +165,7 @@ html[data-preloaded] .preloader {
   position: fixed;
   inset: -50%;
   z-index: 90;
-  opacity: 0.035;
+  opacity: var(--grain);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -168,10 +204,10 @@ html[data-preloaded] .preloader {
   height: 26px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgb(var(--c-text) / 0.07);
   border-top: none;
   border-radius: 0 0 26px 26px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgb(0 0 0 / calc(var(--shadow) * 0.75));
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);
@@ -186,10 +222,10 @@ html[data-preloaded] .preloader {
   align-items: center;
   gap: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgb(var(--c-text) / 0.07);
   border-radius: 40px;
   padding: 8px 8px 8px 20px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 24px rgb(0 0 0 / var(--shadow));
   transform-origin: top center;
   transition:
     opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
@@ -239,4 +275,11 @@ html[data-preloaded] .preloader {
     gap: 8px;
     padding: 6px 6px 6px 14px;
   }
+}
+
+/* ═══ Cambio de tema: revelado circular desde el botón (View Transitions) ═══ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
