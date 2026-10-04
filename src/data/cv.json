@@ -11,12 +11,13 @@
     "avatarLink": "/img/profile.jpeg",
     "openToWork": true,
     "intro": "Desarrollador frontend en Santa Marta, Colombia. Diseño la interfaz, la construyo con React y Node.js y la acompaño hasta que está en producción.",
+    "summary": "Más de {years} años de experiencia trabajando con tecnologías como .NET, SQL Server y React, desarrollando proyectos que aplican soluciones a problemas reales.",
     "stack": [
       "React",
       "TypeScript",
-      "Next.js",
-      "Node.js",
-      "Spring Boot"
+      ".NET",
+      "SQL Server",
+      "Node.js"
     ]
   },
   "education": [

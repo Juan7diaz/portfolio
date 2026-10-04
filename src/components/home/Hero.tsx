@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import cv from '@/data/cv.json';
-import getAllFiles from '@/utils/getAllFiles';
-import CountUp from '@/components/ui/CountUp';
 import LocalTime from '@/components/ui/LocalTime';
 import { container } from '@/lib/styles';
 
@@ -17,11 +15,7 @@ function Hero() {
   const current = work.find((e) => e.endDate === 'Presente') ?? work[0];
   const [edu] = education;
 
-  const stats = [
-    { value: years, label: 'Años exp.' },
-    { value: getAllFiles('projects').length, label: 'Proyectos' },
-    { value: cv.skill.length, label: 'Tecnologías' },
-  ];
+  const summary = profile.summary.replace('{years}', String(years));
 
   const strip = [
     profile.location.replace(', Magdalena', ''),
@@ -34,7 +28,7 @@ function Hero() {
       id="inicio"
       className={`${container} relative flex min-h-[100svh] flex-col pb-10 pt-28 md:pt-24`}
     >
-      <div className="my-auto grid gap-12 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
+      <div className="my-auto">
         <div>
           {edu && (
             <p
@@ -84,8 +78,15 @@ function Hero() {
           )}
 
           <p
+            className="await-ready mt-4 max-w-[560px] animate-fade-up text-[15px] font-light leading-[1.7] text-text-secondary md:text-[16px]"
+            style={d(400)}
+          >
+            {summary}
+          </p>
+
+          <p
             className="await-ready mt-5 flex animate-fade-up flex-wrap gap-x-2 gap-y-1 font-mono text-[11px] tracking-[0.06em] text-text-tertiary"
-            style={d(420)}
+            style={d(480)}
           >
             {profile.stack.map((tech, i) => (
               <React.Fragment key={tech}>
@@ -97,7 +98,7 @@ function Hero() {
 
           <div
             className="await-ready mt-9 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4"
-            style={d(540)}
+            style={d(580)}
           >
             <Link href="#proyectos" className="pill group">
               Ver proyectos
@@ -122,25 +123,6 @@ function Hero() {
               </span>
             </a>
           </div>
-        </div>
-
-        <div
-          className="await-ready flex animate-fade-up gap-8 md:gap-10"
-          style={d(660)}
-        >
-          {stats.map((st, i) => (
-            <div key={st.label} className="group text-left md:text-center">
-              <p className="font-serif text-[clamp(30px,3.4vw,40px)] font-light leading-none text-text-primary">
-                <CountUp value={st.value} delay={i * 120} />
-                <span className="inline-block text-accent transition-transform duration-500 ease-spring group-hover:-translate-y-1 group-hover:rotate-90">
-                  +
-                </span>
-              </p>
-              <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
-                {st.label}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 
