@@ -58,7 +58,24 @@
       "url": "https://smitco.com.co",
       "startDate": "2025",
       "endDate": "Presente",
-      "description": "Desarrollo frontend y backend, diseño de interfaces, soporte técnico y mantenimiento de sistemas. Rol integral abarcando todo el ciclo de desarrollo de producto."
+      "description": "Desarrollo de software a la medida para una terminal portuaria, acompañando cada solución desde el entendimiento de la necesidad de las distintas áreas hasta su despliegue y mantenimiento.",
+      "highlights": [
+        "Construí un sistema para planear y ejecutar la atención de buques, que calcula movimientos, maquinaria y costos operativos, y detecta diferencias entre lo planeado y lo ejecutado.",
+        "Desarrollé la solicitud de facturación de servicios portuarios y reportes automáticos para facturación, que alimentan un repositorio de datos centralizado.",
+        "Integré APIs de terceros y creé APIs y web services propios para que otras empresas y sistemas consuman nuestra información.",
+        "Reemplacé procesos manuales en Excel por sistemas web.",
+        "Desarrollé un sistema de gestión documental de Recursos Humanos, alineado con las normas del Archivo General de la Nación.",
+        "Desarrollo y mantengo aplicativos móviles con Blazor Hybrid.",
+        "Doy soporte y agrego funcionalidades a las plataformas existentes."
+      ],
+      "stack": [
+        "ASP.NET Core 8",
+        ".NET Framework",
+        "SQL Server",
+        "Blazor Hybrid",
+        "jQuery",
+        "Tailwind CSS"
+      ]
     },
     {
       "type": "work",
@@ -67,16 +84,22 @@
       "url": "https://smitco.com.co",
       "startDate": "2024",
       "endDate": "2025",
-      "description": "Prácticas profesionales en desarrollo web, participando en proyectos internos de la empresa y adquiriendo experiencia real en entornos de producción."
-    },
-    {
-      "type": "education",
-      "role": "Ingeniero de Sistemas",
-      "company": "Universidad del Magdalena",
-      "url": "",
-      "startDate": "2020",
-      "endDate": "2024",
-      "description": "Formación en ingeniería de software, bases de datos y arquitectura de sistemas. Proyectos universitarios FullStack con React, Spring Boot y Node.js."
+      "description": "Desarrollo de módulos web para la plataforma interna de una terminal portuaria, reemplazando procesos que se gestionaban por correo electrónico por flujos centralizados y trazables.",
+      "highlights": [
+        "Gestión de PQRS (peticiones, quejas y reclamos): centralicé todas las solicitudes en un solo lugar para servicio al cliente, para que no se perdieran entre correos.",
+        "Solicitud de servicios para clientes: flujo completo donde el cliente pide un servicio, Planificación lo asigna y Facturación emite la factura, todo dentro del sistema.",
+        "Registro y actualización de clientes: validación de datos conforme a SARLAFT (prevención de lavado de activos), con actualización anual obligatoria, algo que antes no existía y mantenía la información desactualizada.",
+        "Rediseño del sitio web para hacerlo más claro y fácil de usar."
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "jQuery",
+        "Tailwind CSS",
+        "ASP.NET Core",
+        "SQL Server"
+      ]
     }
   ],
   "skillGroups": [

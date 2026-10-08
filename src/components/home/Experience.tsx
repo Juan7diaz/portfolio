@@ -51,6 +51,49 @@ function Experience() {
               <p className="max-w-2xl text-[13.5px] font-light leading-[1.7] text-text-secondary">
                 {e.description}
               </p>
+
+              {e.highlights?.length > 0 && (
+                <ul className="mt-5 max-w-2xl space-y-2.5">
+                  {e.highlights.map((h) => {
+                    // "Título: detalle" -> el título se resalta
+                    const cut = h.indexOf(': ');
+                    const titled = cut > 0 && cut < 80;
+                    return (
+                      <li
+                        key={h}
+                        className="relative pl-6 text-[13.5px] font-light leading-[24px] text-text-secondary before:absolute before:left-0 before:top-0 before:font-mono before:text-[11px] before:leading-[24px] before:text-accent before:content-['—']"
+                      >
+                        {titled ? (
+                          <>
+                            <span className="font-normal text-text-primary">
+                              {h.slice(0, cut)}:
+                            </span>
+                            {h.slice(cut + 1)}
+                          </>
+                        ) : (
+                          h
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+
+              {e.stack?.length > 0 && (
+                <ul
+                  className="mt-6 flex flex-wrap gap-1.5"
+                  aria-label="Tecnologías"
+                >
+                  {e.stack.map((t) => (
+                    <li
+                      key={t}
+                      className="cursor-default border border-line px-2.5 py-1 font-mono text-[9px] tracking-[0.04em] text-text-secondary transition-colors duration-200 hover:border-accent hover:text-text-primary"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </Reveal>
         ))}
