@@ -13,11 +13,6 @@ function Experience() {
             delay={(i + 1) * 80}
             className="group relative grid gap-1.5 border-b border-line py-7 transition-[padding] duration-500 ease-out-quint md:grid-cols-[180px_1fr] md:gap-8 md:hover:pl-3"
           >
-            {/* Barra de acento que crece al hover */}
-            <span
-              aria-hidden
-              className="absolute inset-y-7 left-0 hidden w-px origin-top scale-y-0 bg-accent transition-transform duration-500 ease-out-quint group-hover:scale-y-100 md:block"
-            />
             <p className="pt-1 font-mono text-[11px] tracking-[0.04em] text-text-tertiary transition-colors duration-300 group-hover:text-text-secondary">
               {e.startDate} — {e.endDate}
             </p>
@@ -35,7 +30,7 @@ function Experience() {
                   >
                     <span className="link-draw">{e.company}</span>
                     <span className="normal-case text-text-tertiary">
-                      · {e.url.replace(/^https?:\/\//, '')}
+                      · {e.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                     </span>
                     <span
                       aria-hidden

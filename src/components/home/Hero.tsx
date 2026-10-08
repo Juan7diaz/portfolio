@@ -12,7 +12,6 @@ function Hero() {
   const work = experience.filter((e) => e.type === 'work');
   const firstWorkYear = Math.min(...work.map((e) => Number(e.startDate)));
   const years = Math.max(1, new Date().getFullYear() - firstWorkYear);
-  const current = work.find((e) => e.endDate === 'Presente') ?? work[0];
   const [edu] = education;
 
   const summary = profile.summary.replace('{years}', String(years));
@@ -50,32 +49,12 @@ function Hero() {
             </span>
           </h1>
 
-          {current && (
-            <p
-              className="await-ready mt-4 animate-fade-up text-[17px] font-light text-text-secondary md:text-[20px]"
-              style={d(320)}
-            >
-              Desarrollador frontend en{' '}
-              {current.url ? (
-                <a
-                  href={current.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/link text-text-primary"
-                >
-                  <span className="link-draw pb-0.5">{current.company}</span>
-                  <span
-                    aria-hidden
-                    className="ml-1 inline-block text-[0.8em] text-accent transition-transform duration-500 ease-spring group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-                  >
-                    ↗
-                  </span>
-                </a>
-              ) : (
-                <span className="text-text-primary">{current.company}</span>
-              )}
-            </p>
-          )}
+          <p
+            className="await-ready mt-4 animate-fade-up text-[17px] font-light text-text-secondary md:text-[20px]"
+            style={d(320)}
+          >
+            {profile.role}
+          </p>
 
           <p
             className="await-ready mt-4 max-w-[560px] animate-fade-up text-[15px] font-light leading-[1.7] text-text-secondary md:text-[16px]"
@@ -100,28 +79,27 @@ function Hero() {
             className="await-ready mt-9 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4"
             style={d(580)}
           >
-            <Link href="#proyectos" className="pill group">
-              Ver proyectos
+            <a href={cv.contact.cv.value} download className="pill group">
+              Descargar CV
               <span
                 aria-hidden
                 className="transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
               >
                 ↓
               </span>
-            </Link>
-            <a
-              href={cv.contact.cv.value}
-              download
+            </a>
+            <Link
+              href="#proyectos"
               className="group font-mono text-[11px] tracking-[0.06em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
             >
-              <span className="link-draw pb-0.5">Descargar CV</span>
+              <span className="link-draw pb-0.5">Ver proyectos</span>
               <span
                 aria-hidden
-                className="ml-1.5 inline-block text-accent transition-transform duration-500 ease-spring group-hover:translate-y-0.5"
+                className="ml-1.5 inline-block text-accent transition-transform duration-500 ease-spring group-hover:translate-x-0.5"
               >
-                ↓
+                →
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

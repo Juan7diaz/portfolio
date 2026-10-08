@@ -1,7 +1,8 @@
 {
   "profile": {
     "name": "Juan Diaz Guerrero",
-    "headline": "Frontend Developer",
+    "headline": "Desarrollador Fullstack",
+    "role": "Desarrollador fullstack",
     "tagline": "Construyo interfaces que se sienten tan bien como se ven.",
     "focus": "Frontend con React y TypeScript",
     "currently": "Profundizando en Spring Boot",
@@ -55,12 +56,12 @@
       "type": "work",
       "role": "Auxiliar de Desarrollo",
       "company": "Smitco",
-      "url": "https://smitco.com.co",
+      "url": "https://www.smitco.com.co/",
       "startDate": "2025",
       "endDate": "Presente",
       "description": "Desarrollo de software a la medida para una terminal portuaria, acompañando cada solución desde el entendimiento de la necesidad de las distintas áreas hasta su despliegue y mantenimiento.",
       "highlights": [
-        "Construí un sistema para planear y ejecutar la atención de buques, que calcula movimientos, maquinaria y costos operativos, y detecta diferencias entre lo planeado y lo ejecutado.",
+        "Construí un sistema para planear y ejecutar la planeación de buques, que calcula movimientos, maquinaria y costos operativos, y detecta diferencias entre lo planeado y lo ejecutado.",
         "Desarrollé la solicitud de facturación de servicios portuarios y reportes automáticos para facturación, que alimentan un repositorio de datos centralizado.",
         "Integré APIs de terceros y creé APIs y web services propios para que otras empresas y sistemas consuman nuestra información.",
         "Reemplacé procesos manuales en Excel por sistemas web.",
@@ -81,7 +82,7 @@
       "type": "work",
       "role": "Practicante de Sistemas",
       "company": "Smitco",
-      "url": "https://smitco.com.co",
+      "url": "https://www.smitco.com.co/",
       "startDate": "2024",
       "endDate": "2025",
       "description": "Desarrollo de módulos web para la plataforma interna de una terminal portuaria, reemplazando procesos que se gestionaban por correo electrónico por flujos centralizados y trazables.",
@@ -110,17 +111,23 @@
         "TypeScript",
         "JavaScript",
         "HTML / CSS",
+        "Tailwind CSS",
+        "jQuery",
         "Chakra-UI / MUI",
-        "React Query"
+        "React Query",
+        "Blazor Hybrid"
       ]
     },
     {
       "title": "Backend",
       "items": [
+        "ASP.NET Core 8",
+        ".NET Framework",
+        "SQL Server",
         "Node.js / Express",
         "Spring Boot",
         "PostgreSQL",
-        "REST APIs",
+        "REST APIs / Web services",
         "Microservicios"
       ]
     },
@@ -130,6 +137,7 @@
         "Git / GitHub",
         "Azure DevOps",
         "Figma",
+        "Burp Suite",
         "Bash",
         "Testcontainers"
       ]
