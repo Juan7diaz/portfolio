@@ -107,7 +107,7 @@ function ProjectWheel({ projects }: { projects: WheelProject[] }) {
     >
       {/* ── Rueda ── */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 w-full max-w-[300px] -translate-x-1/2 -translate-y-1/2 opacity-[0.14] md:pointer-events-auto md:relative md:left-auto md:top-auto md:mx-auto md:max-w-[420px] md:translate-x-0 md:translate-y-0 md:opacity-100">
-        <div className="relative aspect-square w-full">
+        <div data-thread="orbit" className="relative aspect-square w-full">
           <div className="absolute inset-0 rounded-full border border-line" />
           <div className="absolute inset-[15%] rounded-full border border-line" />
 

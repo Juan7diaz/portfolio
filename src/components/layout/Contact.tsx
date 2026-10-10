@@ -31,7 +31,10 @@ function Contact() {
     >
       <div className="mx-auto max-w-[720px]">
         <Reveal>
-          <h2 className="font-serif text-[clamp(48px,7vw,88px)] font-light leading-none">
+          <h2
+            data-thread="end"
+            className="font-serif text-[clamp(48px,7vw,88px)] font-light leading-none"
+          >
             <a
               href={`mailto:${email}`}
               className="group relative inline-block italic text-accent"

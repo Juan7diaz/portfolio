@@ -21,7 +21,10 @@ function Section({
   return (
     <section id={id} className={`${container} py-14 md:py-20 ${className}`}>
       <Reveal className="group/head mb-10 flex items-baseline gap-3.5">
-        <span className="font-mono text-[11px] tracking-[0.1em] text-accent">
+        <span
+          data-thread="loop"
+          className="font-mono text-[11px] tracking-[0.1em] text-accent"
+        >
           {number}
         </span>
         <h2 className="font-serif text-[clamp(28px,3.5vw,40px)] font-normal leading-none">

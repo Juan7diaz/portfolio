@@ -38,7 +38,10 @@ function Hero() {
             </p>
           )}
 
-          <h1 className="mt-5 font-serif text-[clamp(44px,6.4vw,84px)] font-light leading-[1.02] tracking-[-0.02em]">
+          <h1
+            data-thread="hero"
+            className="mt-5 font-serif text-[clamp(44px,6.4vw,84px)] font-light leading-[1.02] tracking-[-0.02em]"
+          >
             <span className="block overflow-hidden pb-[0.06em]">
               <span
                 className="await-ready inline-block animate-line-up"
