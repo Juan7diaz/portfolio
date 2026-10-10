@@ -8,7 +8,7 @@ import Contact from '@/components/layout/Contact';
 import Preloader from '@/components/layout/Preloader';
 import Cursor from '@/components/layout/Cursor';
 import SoundManager from '@/components/layout/SoundManager';
-import ScrollThread from '@/components/layout/ScrollThread';
+// import ScrollThread from '@/components/layout/ScrollThread';
 import Toaster from '@/components/ui/Toaster';
 import cv from '@/data/cv.json';
 
@@ -99,7 +99,7 @@ export default function AppLayout({
         <Navbar />
         <main id="contenido">{children}</main>
         <Contact />
-        <ScrollThread />
+        {/* <ScrollThread /> */}
         <Cursor />
         <SoundManager />
         <Toaster />
