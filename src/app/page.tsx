@@ -1,35 +1,15 @@
-import AboutMe from '@/components/AboutMe/AboutMe';
-import Certifications from '@/components/Certifications/Certifications';
-import Education from '@/components/Education/Education';
-import ProfileCard from '@/components/Profile/ProfileCard';
-import Projects from '@/components/Project/Projects';
-import Skill from '@/components/Skill/Skill';
-import SectionLayout from '@/components/common/SectionLayout';
+import Hero from '@/components/home/Hero';
+import Experience from '@/components/home/Experience';
+import Projects from '@/components/home/Projects';
+import Skills from '@/components/home/Skills';
 
 export default function AppPage() {
   return (
     <>
-      <ProfileCard />
-
-      <SectionLayout title="Acerca de">
-        <AboutMe />
-      </SectionLayout>
-
-      <SectionLayout title="Educación">
-        <Education />
-      </SectionLayout>
-
-      <SectionLayout title="Proyectos">
-        <Projects />
-      </SectionLayout>
-
-      <SectionLayout title="Habilidades">
-        <Skill />
-      </SectionLayout>
-
-      <SectionLayout title="Certificaciones">
-        <Certifications />
-      </SectionLayout>
+      <Hero />
+      <Experience />
+      <Projects />
+      <Skills />
     </>
   );
 }

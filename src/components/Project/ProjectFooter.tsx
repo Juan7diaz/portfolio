@@ -1,28 +1,46 @@
 import Image from 'next/image';
-import cv from '@/data/cv.json';
+import Link from 'next/link';
+import { ProjectFrontmatter } from '@/interfaces/ProjectFrontmatter.interface';
+import Reveal from '@/components/ui/Reveal';
 
-function ProjectFooter() {
+// "Siguiente proyecto": fila grande con miniatura que se revela al hover
+function ProjectFooter({ next }: { next?: ProjectFrontmatter }) {
+  if (!next) return <div className="pb-24" />;
+
   return (
-    <>
-      <div className="relative flex w-full items-center justify-center">
-        <div className="absolute h-px w-full bg-primary-base/15" />
-        <div className="relative z-10 rounded-full bg-background p-6">
+    <Reveal className="mt-24 pb-24">
+      <Link
+        href={`/project/${encodeURI(next.fileName)}`}
+        className="group grid items-center gap-6 border-y border-line py-10 md:grid-cols-[1fr_auto]"
+      >
+        <span>
+          <span className="label flex items-center gap-2 text-accent before:h-px before:w-5 before:bg-accent">
+            Siguiente proyecto
+          </span>
+          <span className="mt-4 block font-serif text-[clamp(32px,5vw,60px)] font-light leading-[1.05] transition-transform duration-700 ease-out-quint group-hover:translate-x-3">
+            {next.name.split(' - ')[0]}{' '}
+            <span
+              aria-hidden
+              className="inline-block text-accent transition-transform duration-700 ease-out-quint group-hover:translate-x-2"
+            >
+              →
+            </span>
+          </span>
+          <span className="mt-3 block font-mono text-[11px] tracking-[0.06em] text-text-tertiary">
+            {next.label} · {next.date}
+          </span>
+        </span>
+        <span className="relative hidden aspect-[4/3] w-64 overflow-hidden border border-line md:block">
           <Image
-            src={cv.profile.avatarLink}
-            alt="Profile avatar"
-            className="h-16 w-16 rounded-full"
-            width={100}
-            height={100}
+            src={next.coverImage}
+            alt=""
+            fill
+            sizes="256px"
+            className="object-cover grayscale transition-[transform,filter] duration-[1.2s] ease-out-quint group-hover:scale-105 group-hover:grayscale-0"
           />
-        </div>
-      </div>
-      <h1 className="text-center text-2xl font-bold text-text-primary">
-        {cv.profile.name}
-      </h1>
-      <p className="mt-2 pb-20 text-center text-text-secondary">
-        {cv.profile.description}
-      </p>
-    </>
+        </span>
+      </Link>
+    </Reveal>
   );
 }
 

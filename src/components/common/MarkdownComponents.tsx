@@ -1,14 +1,17 @@
 import Image from 'next/image';
-import TitleSection from './TitleSection';
-import CustomLink from './CustomLink';
+import CodeCopyButton from '@/components/ui/CodeCopyButton';
 
 function H1({ children }: { children: React.ReactNode }) {
-  return <TitleSection title={children as string} />;
+  return (
+    <h2 className="mb-5 mt-16 font-serif text-[clamp(30px,3.6vw,40px)] font-normal leading-tight">
+      {children}
+    </h2>
+  );
 }
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-2 mt-10 text-xl font-bold leading-7 text-text-primary md:leading-10">
+    <h2 className="mb-5 mt-14 flex items-baseline gap-3 font-serif text-[clamp(26px,3vw,34px)] font-normal leading-tight before:h-px before:w-5 before:shrink-0 before:translate-y-[-0.3em] before:bg-accent">
       {children}
     </h2>
   );
@@ -16,7 +19,7 @@ function H2({ children }: { children: React.ReactNode }) {
 
 function H3({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="my-5 text-xl font-semibold leading-7 text-text-primary md:leading-10">
+    <h3 className="mb-3 mt-10 font-serif text-[22px] font-normal">
       {children}
     </h3>
   );
@@ -24,7 +27,7 @@ function H3({ children }: { children: React.ReactNode }) {
 
 function P({ children }: { children: React.ReactNode }) {
   return (
-    <p className="my-2 leading-7 text-text-secondary md:leading-10">
+    <p className="my-5 text-[15.5px] font-light leading-[1.85] text-text-secondary md:text-[16.5px]">
       {children}
     </p>
   );
@@ -32,7 +35,7 @@ function P({ children }: { children: React.ReactNode }) {
 
 function UL({ children }: { children: React.ReactNode }) {
   return (
-    <ul className="my-2 list-outside list-disc pl-5 leading-7 text-text-secondary md:leading-10">
+    <ul className="my-6 space-y-3 text-[15.5px] font-light leading-[27px] text-text-secondary md:text-[16.5px] md:leading-[29px]">
       {children}
     </ul>
   );
@@ -40,23 +43,45 @@ function UL({ children }: { children: React.ReactNode }) {
 
 function OL({ children }: { children: React.ReactNode }) {
   return (
-    <ol className="my-2 list-inside list-decimal leading-7 text-text-secondary md:leading-10">
+    <ol className="my-6 list-decimal space-y-3 pl-5 text-[15.5px] font-light leading-[1.75] text-text-secondary marker:font-mono marker:text-[11px] marker:text-accent md:text-[16.5px] [&>li]:pl-1 [&>li]:before:hidden">
       {children}
     </ol>
   );
 }
 
 function LI({ children }: { children: React.ReactNode }) {
-  return <li className="mb-1 pl-5 -indent-5 md:mb-0">{children}</li>;
+  return (
+    <li className="relative pl-6 before:absolute before:left-0 before:top-0 before:font-mono before:text-[12px] before:leading-[27px] before:text-accent before:content-['—'] md:before:leading-[29px]">
+      {children}
+    </li>
+  );
 }
 
 function A({ href, children }: { href: string; children: React.ReactNode }) {
-  return <CustomLink text={children as string} url={href} />;
+  const external = href?.startsWith('http');
+  return (
+    <a
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      className="pill group mb-2 mr-2 !font-light"
+    >
+      {children}
+      {external && (
+        <span
+          aria-hidden
+          className="transition-transform duration-500 ease-spring group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        >
+          ↗
+        </span>
+      )}
+    </a>
+  );
 }
 
 function BLOCKQUOTE({ children }: { children: React.ReactNode }) {
   return (
-    <blockquote className="my-9 border-l-4 border-primary-base pl-4 italic">
+    <blockquote className="my-10 border-l border-accent bg-surface px-6 py-2 md:px-8 md:py-4 [&_li]:my-0 [&_p]:my-3 [&_ul]:my-3">
       {children}
     </blockquote>
   );
@@ -64,17 +89,19 @@ function BLOCKQUOTE({ children }: { children: React.ReactNode }) {
 
 function IMG({ src, alt }: { src: string; alt: string }) {
   return (
-    <span className="my-4 block">
-      <span className="flex flex-col items-center justify-center">
-        <Image
-          src={src}
-          alt={alt}
-          className="rounded-lg shadow-lg"
-          width={600}
-          height={600}
-        />
-        <span className="mt-2 text-sm italic text-text-tertiary">{alt}</span>
-      </span>
+    <span className="my-10 block">
+      <Image
+        src={src}
+        alt={alt}
+        className="w-full border border-line"
+        width={1200}
+        height={800}
+      />
+      {alt && (
+        <span className="mt-3 block font-mono text-[10px] tracking-[0.06em] text-text-tertiary">
+          {alt}
+        </span>
+      )}
     </span>
   );
 }
@@ -85,52 +112,46 @@ function Code({
   node,
 }: {
   children: React.ReactNode;
-  // eslint-disable-next-line react/require-default-props
   className?: string;
   node: any;
 }) {
   const isInline = typeof children === 'string' && !children.includes('\n');
-
   const match = /language-(\w+)/.exec(className || '');
   const lang = match ? match[1] : null;
-
   const meta = node?.data?.meta || null;
   const fileNameMatch = (meta as string)?.match(/filename="(.+)"/);
   const fileName = fileNameMatch ? fileNameMatch[1] : null;
 
   if (isInline) {
     return (
-      <code className="rounded bg-[#2c303a] px-1 py-0.5 font-mono text-sm text-text-codeInLine">
+      <code className="bg-text-primary/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-text-codeInLine">
         {children}
       </code>
     );
   }
 
   return (
-    <div className="relative mb-4 mt-10">
-      {fileName && (
-        <div className="absolute -top-6 inline-block">
-          <div className="flex items-center">
-            <span className="rounded-t-lg border-x border-t border-primary-base/40 bg-[#1a1f24] px-3 py-1 text-xs text-text-code">
-              📁 {fileName}
-            </span>
-          </div>
-        </div>
-      )}
-      <pre className="overflow-x-auto rounded-lg rounded-tl-none border-[1px] border-primary-base/40 bg-[#1a1f24] p-4 text-text-code shadow-sm">
+    <div className="my-8 border border-line bg-surface-dark">
+      <div className="flex items-center justify-between border-b border-line py-2 pl-4 pr-2">
+        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-tertiary">
+          {fileName ?? lang ?? 'código'}
+        </span>
+        <CodeCopyButton code={String(children).replace(/\n$/, '')} />
+      </div>
+      <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-text-code">
         <code className={className}>{children}</code>
       </pre>
-      <span className="mt-1 block text-xs italic text-text-tertiary">
-        lang: {lang}
-      </span>
     </div>
   );
 }
 
+// El bloque de código ya dibuja su propio <pre>
+function PRE({ children }: { children: React.ReactNode }) {
+  return children;
+}
+
 function STRONG({ children }: { children: React.ReactNode }) {
-  return (
-    <strong className="font-semibold text-primary-base">{children}</strong>
-  );
+  return <strong className="font-medium text-text-primary">{children}</strong>;
 }
 
 const MarkdownComponents = {
@@ -144,6 +165,7 @@ const MarkdownComponents = {
   a: A,
   blockquote: BLOCKQUOTE,
   code: Code,
+  pre: PRE,
   img: IMG,
   strong: STRONG,
 };

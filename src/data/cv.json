@@ -1,11 +1,25 @@
 {
   "profile": {
     "name": "Juan Diaz Guerrero",
+    "headline": "Desarrollador Fullstack",
+    "role": "Desarrollador fullstack",
+    "tagline": "Construyo interfaces que se sienten tan bien como se ven.",
+    "focus": "Frontend con React y TypeScript",
+    "currently": "Profundizando en Spring Boot",
     "description": "Ingeniero de sistemas | Frontend developer | ReactJS",
     "location": "Santa Marta, Magdalena, Colombia",
     "bannerLink": "/img/banner.webp",
     "avatarLink": "/img/profile.jpeg",
-    "openToWork": true
+    "openToWork": true,
+    "intro": "Desarrollador frontend en Santa Marta, Colombia. Diseño la interfaz, la construyo con React y Node.js y la acompaño hasta que está en producción.",
+    "summary": "Más de {years} años de experiencia trabajando con tecnologías como .NET, SQL Server y React, desarrollando proyectos que aplican soluciones a problemas reales.",
+    "stack": [
+      "React",
+      "TypeScript",
+      ".NET",
+      "SQL Server",
+      "Node.js"
+    ]
   },
   "education": [
     {
@@ -19,7 +33,7 @@
   "contact": {
     "email": {
       "label": "Email",
-      "value": "juanluisdiazguerrer@gmail.com"
+      "value": "juanluisdiazguerrero@gmail.com"
     },
     "linkedin": {
       "label": "LinkedIn",
@@ -37,13 +51,105 @@
   "about": {
     "summary": "Estudiante de último semestre de ingeniería de sistemas con experiencia práctica en desarrollo FullStack. Especializado en React y Node.js, participando en proyectos universitarios innovadores, demostrando habilidades en resolución de problemas y trabajo en equipo. \n Comprometido con el aprendizaje continuo, actualmente profundizando en Spring Boot. Busco oportunidades para aplicar mi experiencia técnica y creatividad en soluciones tecnológicas impactantes."
   },
+  "experience": [
+    {
+      "type": "work",
+      "role": "Auxiliar de Desarrollo",
+      "company": "Smitco",
+      "url": "https://www.smitco.com.co/",
+      "startDate": "2025",
+      "endDate": "Presente",
+      "description": "Desarrollo de software a la medida para una terminal portuaria, acompañando cada solución desde el entendimiento de la necesidad de las distintas áreas hasta su despliegue y mantenimiento.",
+      "highlights": [
+        "Construí un sistema para planear y ejecutar la planeación de buques, que calcula movimientos, maquinaria y costos operativos, y detecta diferencias entre lo planeado y lo ejecutado.",
+        "Desarrollé la solicitud de facturación de servicios portuarios y reportes automáticos para facturación, que alimentan un repositorio de datos centralizado.",
+        "Integré APIs de terceros y creé APIs y web services propios para que otras empresas y sistemas consuman nuestra información.",
+        "Reemplacé procesos manuales en Excel por sistemas web.",
+        "Desarrollé un sistema de gestión documental de Recursos Humanos, alineado con las normas del Archivo General de la Nación.",
+        "Desarrollo y mantengo aplicativos móviles con Blazor Hybrid.",
+        "Doy soporte y agrego funcionalidades a las plataformas existentes."
+      ],
+      "stack": [
+        "ASP.NET Core 8",
+        ".NET Framework",
+        "SQL Server",
+        "Blazor Hybrid",
+        "jQuery",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "type": "work",
+      "role": "Practicante de Sistemas",
+      "company": "Smitco",
+      "url": "https://www.smitco.com.co/",
+      "startDate": "2024",
+      "endDate": "2025",
+      "description": "Desarrollo de módulos web para la plataforma interna de una terminal portuaria, reemplazando procesos que se gestionaban por correo electrónico por flujos centralizados y trazables.",
+      "highlights": [
+        "Gestión de PQRS (peticiones, quejas y reclamos): centralicé todas las solicitudes en un solo lugar para servicio al cliente, para que no se perdieran entre correos.",
+        "Solicitud de servicios para clientes: flujo completo donde el cliente pide un servicio, Planificación lo asigna y Facturación emite la factura, todo dentro del sistema.",
+        "Registro y actualización de clientes: validación de datos conforme a SARLAFT (prevención de lavado de activos), con actualización anual obligatoria, algo que antes no existía y mantenía la información desactualizada.",
+        "Rediseño del sitio web para hacerlo más claro y fácil de usar."
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "jQuery",
+        "Tailwind CSS",
+        "ASP.NET Core",
+        "SQL Server"
+      ]
+    }
+  ],
+  "skillGroups": [
+    {
+      "title": "Frontend",
+      "items": [
+        "React / Next.js",
+        "TypeScript",
+        "JavaScript",
+        "HTML / CSS",
+        "Tailwind CSS",
+        "jQuery",
+        "Chakra-UI / MUI",
+        "React Query",
+        "Blazor Hybrid"
+      ]
+    },
+    {
+      "title": "Backend",
+      "items": [
+        "ASP.NET Core 8",
+        ".NET Framework",
+        "SQL Server",
+        "Node.js / Express",
+        "Spring Boot",
+        "PostgreSQL",
+        "REST APIs / Web services",
+        "Microservicios"
+      ]
+    },
+    {
+      "title": "Tools",
+      "items": [
+        "Git / GitHub",
+        "Azure DevOps",
+        "Figma",
+        "Burp Suite",
+        "Bash",
+        "Testcontainers"
+      ]
+    }
+  ],
   "certification": [
     {
       "logoSrc": "/img/udemy.jpeg",
       "title": "React: De cero a experto ( Hooks y MERN )",
       "issuer": "Udemy",
       "issueDate": "Jun. 2024",
-      "credentialId": "UC-#3554bf-6180-4cle-bc12-1f48b8d3249a",
+      "credentialId": "UC-ff3554bf-6180-4c1e-bc12-1f48b8d3249a",
       "credentialUrl": "https://www.udemy.com/certificate/UC-ff3554bf-6180-4c1e-bc12-1f48b8d3249a/"
     },
     {

@@ -1,39 +1,105 @@
-import Image from 'next/image';
-import cv from '@/data/cv.json';
-import { IoReturnDownBack } from 'react-icons/io5';
 import Link from 'next/link';
 import { ProjectFrontmatter } from '@/interfaces/ProjectFrontmatter.interface';
 
+const d = (ms: number) => ({ animationDelay: `${ms}ms` });
+
 function ProjectHeader({ data }: { data: ProjectFrontmatter }) {
+  const specs = [
+    { label: 'Rol', value: data.role },
+    { label: 'Fecha', value: data.date },
+    { label: 'Tipo', value: data.type },
+    { label: 'Stack', value: `${data.technologies?.length ?? 0} tecnologías` },
+  ];
+
   return (
-    <header className="mb-10 mt-10 max-w-4xl">
+    <header className="pt-32 md:pt-40">
       <Link
-        className="flex flex-row items-center pb-5 text-text-secondary hover:cursor-pointer hover:underline"
-        href="/"
+        href="/#proyectos"
+        className="await-ready group inline-flex animate-fade-up items-center gap-2 font-mono text-[11px] tracking-[0.06em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
+        style={d(80)}
       >
-        <IoReturnDownBack className="mr-2" />
-        Regresar
+        <span
+          aria-hidden
+          className="text-accent transition-transform duration-500 ease-spring group-hover:-translate-x-1"
+        >
+          ←
+        </span>
+        <span className="link-draw pb-0.5">Todos los proyectos</span>
       </Link>
-      <div className="relative after:absolute after:bottom-2 after:left-0 after:h-[3px] after:w-24 after:bg-primary-base" />
-      <h1 className="mb-6 sm:text-5xl text-4xl font-bold text-text-primary">{data.name}</h1>
-      <div className="mb-8 flex items-center">
-        <Image
-          src={cv.profile.avatarLink}
-          alt="profile picture"
-          className="mr-4 h-12 w-12 rounded-full"
-          width={100}
-          height={100}
-        />
-        <div>
-            <p className="text-xl font-semibold text-text-primary">{cv.profile.name}</p>
-          <div className="flex flex-col items-center space-x-3 text-text-secondary sm:flex-row">
-            <span>{data.role}</span>
-            <span className="hidden sm:block">•</span>
-            <span>{data.type}</span>
-            <span className="hidden sm:block">•</span>
-            <time>{data.date}</time>
+
+      <p
+        className="label await-ready mt-12 flex animate-fade-up items-center gap-2 text-accent before:h-px before:w-5 before:bg-accent"
+        style={d(140)}
+      >
+        {data.label ?? data.type}
+      </p>
+
+      <h1 className="mt-5 font-serif text-[clamp(40px,6vw,80px)] font-light leading-[1.04] tracking-[-0.02em]">
+        <span className="block overflow-hidden pb-[0.06em]">
+          <span
+            className="await-ready inline-block animate-line-up"
+            style={d(200)}
+          >
+            {data.name}
+          </span>
+        </span>
+      </h1>
+
+      <p
+        className="await-ready mt-5 max-w-2xl animate-fade-up text-[15px] font-light leading-[1.7] text-text-secondary md:text-base"
+        style={d(320)}
+      >
+        {data.summary ?? data.resumen}
+      </p>
+
+      <dl
+        className="await-ready mt-12 grid animate-fade-up grid-cols-2 gap-6 border-t border-line pt-6 md:grid-cols-4"
+        style={d(420)}
+      >
+        {specs.map((s) => (
+          <div key={s.label}>
+            <dt className="font-mono text-[9px] uppercase tracking-[0.14em] text-text-tertiary">
+              {s.label}
+            </dt>
+            <dd className="mt-1.5 font-serif text-[19px] leading-tight text-text-primary">
+              {s.value}
+            </dd>
           </div>
-        </div>
+        ))}
+      </dl>
+
+      <div
+        className="await-ready mt-8 flex animate-fade-up flex-col gap-6 md:flex-row md:items-center md:justify-between"
+        style={d(500)}
+      >
+        {data.technologies?.length > 0 && (
+          <ul className="flex flex-wrap gap-1.5" aria-label="Tecnologías">
+            {data.technologies.map((t) => (
+              <li
+                key={t}
+                className="cursor-default border border-line px-2.5 py-1 font-mono text-[9px] tracking-[0.04em] text-text-secondary transition-colors duration-200 hover:border-accent hover:text-text-primary"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        )}
+        {data.github && (
+          <a
+            href={data.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pill group shrink-0 self-start md:self-auto"
+          >
+            Ver código
+            <span
+              aria-hidden
+              className="transition-transform duration-500 ease-spring group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            >
+              ↗
+            </span>
+          </a>
+        )}
       </div>
     </header>
   );
