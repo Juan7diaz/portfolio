@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, JetBrains_Mono, Outfit } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
@@ -12,24 +12,39 @@ import SoundManager from '@/components/layout/SoundManager';
 import Toaster from '@/components/ui/Toaster';
 import cv from '@/data/cv.json';
 
-const serif = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
+// Fuentes incluidas en el repo (variables, subconjunto latino): no dependen
+// de descargar Google Fonts en cada build, así las clases que genera Next
+// siempre coinciden entre el HTML y el CSS.
+const serif = localFont({
+  src: [
+    {
+      path: '../fonts/cormorant-garamond.woff2',
+      weight: '300 700',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/cormorant-garamond-italic.woff2',
+      weight: '300 700',
+      style: 'italic',
+    },
+  ],
   display: 'swap',
   variable: '--font-serif',
+  fallback: ['Georgia', 'serif'],
 });
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['300', '400', '500'],
+const mono = localFont({
+  src: '../fonts/jetbrains-mono.woff2',
+  weight: '100 800',
   display: 'swap',
   variable: '--font-mono',
+  fallback: ['ui-monospace', 'monospace'],
 });
-const sans = Outfit({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+const sans = localFont({
+  src: '../fonts/outfit.woff2',
+  weight: '100 900',
   display: 'swap',
   variable: '--font-sans',
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
