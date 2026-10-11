@@ -11,7 +11,7 @@ function Experience() {
             as="li"
             key={`${e.role}-${e.startDate}`}
             delay={(i + 1) * 80}
-            className="group relative grid gap-1.5 border-b border-line py-7 transition-[padding] duration-500 ease-out-quint md:grid-cols-[180px_1fr] md:gap-8 md:hover:pl-3"
+            className="group relative grid gap-1.5 border-b border-line py-7 md:grid-cols-[180px_1fr] md:gap-8"
           >
             <p className="pt-1 font-mono text-[11px] tracking-[0.04em] text-text-tertiary transition-colors duration-300 group-hover:text-text-secondary">
               {e.startDate} — {e.endDate}

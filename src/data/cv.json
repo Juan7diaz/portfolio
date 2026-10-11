@@ -113,7 +113,6 @@
         "HTML / CSS",
         "Tailwind CSS",
         "jQuery",
-        "Chakra-UI / MUI",
         "React Query",
         "Blazor Hybrid"
       ]
@@ -127,8 +126,7 @@
         "Node.js / Express",
         "Spring Boot",
         "PostgreSQL",
-        "REST APIs / Web services",
-        "Microservicios"
+        "REST APIs / Web services"
       ]
     },
     {
@@ -139,7 +137,7 @@
         "Figma",
         "Burp Suite",
         "Bash",
-        "Testcontainers"
+        "Postman"
       ]
     }
   ],
