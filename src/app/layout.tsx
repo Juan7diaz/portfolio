@@ -11,7 +11,6 @@ import SoundManager from '@/components/layout/SoundManager';
 // import ScrollThread from '@/components/layout/ScrollThread';
 import Toaster from '@/components/ui/Toaster';
 import cv from '@/data/cv.json';
-import { keywords, siteDescription, siteTitle, siteUrl } from '@/lib/site';
 
 const serif = Cormorant_Garamond({
   subsets: ['latin'],
@@ -33,38 +32,24 @@ const sans = Outfit({
   variable: '--font-sans',
 });
 
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: siteTitle,
-    template: `%s | ${cv.profile.name}`,
+    default: `${cv.profile.name} — ${cv.profile.headline}`,
+    template: `%s — ${cv.profile.name}`,
   },
-  description: siteDescription,
-  keywords,
-  authors: [{ name: cv.profile.name, url: siteUrl }],
-  creator: cv.profile.name,
-  alternates: { canonical: '/' },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-  },
+  description: cv.profile.description,
   openGraph: {
-    type: 'profile',
-    url: '/',
-    siteName: cv.profile.name,
-    title: siteTitle,
-    description: siteDescription,
+    title: cv.profile.name,
+    description: cv.profile.description,
+    images: [cv.profile.bannerLink],
     locale: 'es_CO',
-    firstName: 'Juan',
-    lastName: 'Diaz Guerrero',
+    type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteTitle,
-    description: siteDescription,
-  },
-  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {

@@ -50,7 +50,6 @@ function Hero() {
                 {profile.name}
               </span>
             </span>
-            <span className="sr-only">, {profile.role.toLowerCase()}</span>
           </h1>
 
           <p

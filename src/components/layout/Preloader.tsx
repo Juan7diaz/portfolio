@@ -5,10 +5,8 @@ import cv from '@/data/cv.json';
 import { play } from '@/lib/sound';
 
 const KEY = 'jdg-preloaded';
-const START = 150; // ms antes de que arranque la barra
-const BAR = 800; // ms que tarda la barra en llenarse
-const HOLD = START + BAR + 120; // pequeña pausa al llegar a 100
-const EXIT = 650; // ms de la cortina subiendo
+const HOLD = 1900; // ms hasta que la barra termina
+const EXIT = 900; // ms de la cortina subiendo
 
 // Cortina de entrada: nombre, barra de carga y porcentaje.
 // Solo aparece en la primera visita de la sesión.
@@ -28,25 +26,20 @@ function Preloader() {
 
     // Sonido solo si el navegador ya permite audio (antes de interactuar
     // suele estar bloqueado y simplemente no suena)
-    const swell = window.setTimeout(() => play('loadStart'), START);
+    const swell = window.setTimeout(() => play('loadStart'), 500);
 
     // Contador sincronizado con la barra (misma curva ease-in-out)
-    const start = performance.now() + START;
+    const start = performance.now() + 500;
     let raf = 0;
     const tick = (now: number) => {
-      const t = Math.min(Math.max((now - start) / BAR, 0), 1);
+      const t = Math.min(Math.max((now - start) / 1400, 0), 1);
       const eased = t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
       setPercent(Math.round(eased * 100));
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
 
-    let exited = false;
-    let done = 0;
-    const leave = () => {
-      if (exited) return;
-      exited = true;
-      setPercent(100);
+    const exit = window.setTimeout(() => {
       setPhase('exit');
       play('loadDone');
       html.setAttribute('data-ready', '');
@@ -56,20 +49,14 @@ function Preloader() {
       } catch {
         /* modo privado: no pasa nada */
       }
-      done = window.setTimeout(() => setPhase('done'), EXIT);
-    };
-    const exit = window.setTimeout(leave, HOLD);
-
-    // Clic, tecla o rueda: se salta la intro
-    const skip = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const;
-    skip.forEach((e) => window.addEventListener(e, leave, { once: true }));
+    }, HOLD + 300);
+    const done = window.setTimeout(() => setPhase('done'), HOLD + 300 + EXIT);
 
     return () => {
       cancelAnimationFrame(raf);
       window.clearTimeout(swell);
       window.clearTimeout(exit);
       window.clearTimeout(done);
-      skip.forEach((e) => window.removeEventListener(e, leave));
       document.body.style.overflow = overflow;
     };
   }, []);
@@ -79,7 +66,7 @@ function Preloader() {
   return (
     <div
       aria-hidden
-      className={`preloader fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-5 bg-surface-dark transition-transform duration-[650ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+      className={`preloader fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-5 bg-surface-dark transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
         phase === 'exit' ? '-translate-y-full' : ''
       }`}
     >
@@ -88,16 +75,13 @@ function Preloader() {
           phase === 'exit' ? '-translate-y-6 opacity-0' : ''
         }`}
       >
-        <p className="animate-fade-up font-serif text-[clamp(26px,4vw,44px)] font-light tracking-[0.06em] text-text-primary [animation-delay:0ms]">
+        <p className="animate-fade-up font-serif text-[clamp(26px,4vw,44px)] font-light tracking-[0.06em] text-text-primary [animation-delay:300ms]">
           {cv.profile.name}
         </p>
-        <div className="relative h-px w-[180px] animate-fade-in overflow-hidden bg-line-strong [animation-delay:100ms]">
-          <span
-            className="absolute inset-0 origin-left bg-accent"
-            style={{ transform: `scaleX(${percent / 100})` }}
-          />
+        <div className="relative h-px w-[180px] animate-fade-in overflow-hidden bg-line-strong [animation-delay:500ms]">
+          <span className="absolute inset-0 origin-left animate-load-bar bg-accent [animation-delay:500ms]" />
         </div>
-        <div className="flex w-[180px] animate-fade-in justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary [animation-delay:200ms]">
+        <div className="flex w-[180px] animate-fade-in justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary [animation-delay:700ms]">
           <span>Portafolio · {new Date().getFullYear()}</span>
           <span className="tabular-nums text-text-secondary">
             {String(percent).padStart(3, '0')}
