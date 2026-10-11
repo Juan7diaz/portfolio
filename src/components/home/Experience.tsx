@@ -1,7 +1,6 @@
 import cv from '@/data/cv.json';
 import Section from '@/components/common/Section';
 import Reveal from '@/components/ui/Reveal';
-import Duration from '@/components/ui/Duration';
 import { formatMonth } from '@/lib/dates';
 
 function Experience() {
@@ -17,13 +16,6 @@ function Experience() {
           >
             <p className="pt-1 font-mono text-[11px] tracking-[0.04em] text-text-tertiary transition-colors duration-300 group-hover:text-text-secondary">
               {formatMonth(e.startDate)} — {formatMonth(e.endDate)}
-              <span className="text-text-tertiary/80 md:mt-1 md:block">
-                <span aria-hidden className="md:hidden">
-                  {' '}
-                  ·{' '}
-                </span>
-                <Duration start={e.startDate} end={e.endDate} />
-              </span>
             </p>
             <div>
               <h3 className="mb-1 font-serif text-[22px] font-normal leading-tight md:text-[24px]">

@@ -1,4 +1,4 @@
-// Fechas al estilo de LinkedIn: "sept. 2024", "1 año 8 meses"
+// Fechas al estilo de LinkedIn: "sept. 2024", "actualidad"
 const MONTHS = [
   'ene.',
   'feb.',
@@ -31,19 +31,6 @@ export const formatMonth = (date: string) => {
   if (isCurrent(date)) return 'actualidad';
   const { year, month } = parse(date);
   return date.includes('-') ? `${MONTHS[month]} ${year}` : String(year);
-};
-
-// Meses contados de forma inclusiva, como LinkedIn
-export const duration = (start: string, end: string, now = new Date()) => {
-  const a = parse(start, now);
-  const b = parse(end, now);
-  const total = (b.year - a.year) * 12 + (b.month - a.month) + 1;
-  const years = Math.floor(total / 12);
-  const months = total % 12;
-  const parts = [];
-  if (years) parts.push(`${years} ${years === 1 ? 'año' : 'años'}`);
-  if (months) parts.push(`${months} ${months === 1 ? 'mes' : 'meses'}`);
-  return parts.join(' ');
 };
 
 export const startYear = (date: string) => parse(date).year;
