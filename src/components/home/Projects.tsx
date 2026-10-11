@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import getProjects from '@/utils/getProjects';
 import { seeded } from '@/lib/ready';
@@ -64,34 +63,6 @@ function Projects() {
       <Section id="proyectos" number="02" title="Proyectos">
         <Reveal delay={100}>
           <ProjectWheel projects={projects} />
-        </Reveal>
-        {/* Índice con enlace directo a cada proyecto */}
-        <Reveal delay={160} className="mt-14 border-t border-line pt-6">
-          <nav aria-labelledby="indice-proyectos">
-            <h3 id="indice-proyectos" className="label mb-4 text-text-tertiary">
-              Todos los proyectos
-            </h3>
-            <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
-              {projects.map((p, i) => (
-                <li key={p.slug}>
-                  <Link
-                    href={`/project/${encodeURI(p.slug)}`}
-                    className="group flex items-baseline gap-3 text-text-secondary transition-colors duration-300 hover:text-text-primary"
-                  >
-                    <span className="font-mono text-[10px] text-accent">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="font-serif text-[18px]">
-                      <span className="link-draw">{p.name}</span>
-                      <span className="ml-2 font-mono text-[10px] tracking-[0.04em] text-text-tertiary">
-                        {p.label}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </Reveal>
       </Section>
     </div>
