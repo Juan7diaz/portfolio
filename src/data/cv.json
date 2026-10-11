@@ -57,7 +57,7 @@
       "role": "Auxiliar de Desarrollo",
       "company": "Smitco",
       "url": "https://www.smitco.com.co/",
-      "startDate": "2025",
+      "startDate": "2025-03",
       "endDate": "Presente",
       "description": "Desarrollo de software a la medida para una terminal portuaria, acompañando cada solución desde el entendimiento de la necesidad de las distintas áreas hasta su despliegue y mantenimiento.",
       "highlights": [
@@ -83,8 +83,8 @@
       "role": "Practicante de Sistemas",
       "company": "Smitco",
       "url": "https://www.smitco.com.co/",
-      "startDate": "2024",
-      "endDate": "2025",
+      "startDate": "2024-09",
+      "endDate": "2025-03",
       "description": "Desarrollo de módulos web para la plataforma interna de una terminal portuaria, reemplazando procesos que se gestionaban por correo electrónico por flujos centralizados y trazables.",
       "highlights": [
         "Gestión de PQRS (peticiones, quejas y reclamos): centralicé todas las solicitudes en un solo lugar para servicio al cliente, para que no se perdieran entre correos.",

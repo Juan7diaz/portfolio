@@ -3,6 +3,7 @@ import React from 'react';
 import cv from '@/data/cv.json';
 import LocalTime from '@/components/ui/LocalTime';
 import { container } from '@/lib/styles';
+import { startYear } from '@/lib/dates';
 
 // Retraso (ms) de cada pieza, encadenado tras la cortina del preloader
 const d = (ms: number) => ({ animationDelay: `${ms}ms` });
@@ -10,7 +11,7 @@ const d = (ms: number) => ({ animationDelay: `${ms}ms` });
 function Hero() {
   const { profile, experience, education } = cv;
   const work = experience.filter((e) => e.type === 'work');
-  const firstWorkYear = Math.min(...work.map((e) => Number(e.startDate)));
+  const firstWorkYear = Math.min(...work.map((e) => startYear(e.startDate)));
   const years = Math.max(1, new Date().getFullYear() - firstWorkYear);
   const [edu] = education;
 
