@@ -64,10 +64,6 @@ const config: Config = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        'load-bar': {
-          '0%': { transform: 'scaleX(0)' },
-          '100%': { transform: 'scaleX(1)' },
-        },
         'soft-pulse': {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.3' },
@@ -108,7 +104,6 @@ const config: Config = {
         'line-up': 'line-up 0.9s cubic-bezier(0.23, 1, 0.32, 1) both',
         'fade-up': 'fade-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) both',
         'fade-in': 'fade-in 0.6s ease both',
-        'load-bar': 'load-bar 1.4s cubic-bezier(0.65, 0, 0.35, 1) both',
         'soft-pulse': 'soft-pulse 2s ease infinite',
         'scroll-line':
           'scroll-line 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite',

@@ -11,6 +11,7 @@ import SoundManager from '@/components/layout/SoundManager';
 // import ScrollThread from '@/components/layout/ScrollThread';
 import Toaster from '@/components/ui/Toaster';
 import cv from '@/data/cv.json';
+import { keywords, siteDescription, siteTitle, siteUrl } from '@/lib/site';
 
 // Fuentes incluidas en el repo (variables, subconjunto latino): no dependen
 // de descargar Google Fonts en cada build, así las clases que genera Next
@@ -47,24 +48,38 @@ const sans = localFont({
   fallback: ['system-ui', 'sans-serif'],
 });
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : 'http://localhost:3000';
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${cv.profile.name} — ${cv.profile.headline}`,
-    template: `%s — ${cv.profile.name}`,
+    default: siteTitle,
+    template: `%s | ${cv.profile.name}`,
   },
-  description: cv.profile.description,
+  description: siteDescription,
+  keywords,
+  authors: [{ name: cv.profile.name, url: siteUrl }],
+  creator: cv.profile.name,
+  alternates: { canonical: '/' },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
   openGraph: {
-    title: cv.profile.name,
-    description: cv.profile.description,
-    images: [cv.profile.bannerLink],
+    type: 'profile',
+    url: '/',
+    siteName: cv.profile.name,
+    title: siteTitle,
+    description: siteDescription,
     locale: 'es_CO',
-    type: 'website',
+    firstName: 'Juan',
+    lastName: 'Diaz Guerrero',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
